@@ -10,16 +10,15 @@ Garantir consistência e segurança na integração entre o Sanity e os projetos
 
 - ✅ Schemas do Sanity centralizados  
 - ✅ Queries GROQ reutilizáveis  
-- ✅ Tipagens TypeScript geradas automaticamente com `sanity-codegen`  
+- ✅ Tipagens TypeScript geradas automaticamente com `sanity-typegen`  
 - ✅ Funções auxiliares reutilizáveis  
-- ✅ Pronto para ser consumido por projetos Front-end e Studio  
 
 ## 📦 Instalação
 
 ### Usando npm
 
 ```bash
-npm install github:PRMarcos/sanity-shared
+npm install git+https://github.com/usuario/sanity-shared.git
 ```
 
 ## 🧑‍💻 Como usar

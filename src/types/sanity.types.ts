@@ -480,7 +480,7 @@ export type SanityImageMetadata = {
 
 export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Slug | SermonSummary | Event | Header | AboutPage | OurSmedsPage | HomePage | Footer | ContactPage | PhoneEntry | EmailEntry | SocialLink | SupportedSocialMidia | Address | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./src/lib/queries/getContactPageData.ts
+// Source: ./src/queries/contactPageQuery.ts
 // Variable: contactPageQuery
 // Query: *[_type == "contactPage"][0]{    _id,    title,    "bannerImage": bannerImage.asset->url,    description,    address-> {      street,      number,      district,      city,      state,      zip    },    "phone": phone->number,    "email": email->address,    "DefaultSocial": DefaultSocial->socialUserName,    "DefaultSocialLink": DefaultSocial->url,    "whatsApp": WhatsPhone->number,    AvailableHours  }
 export type ContactPageQueryResult = {
@@ -504,7 +504,7 @@ export type ContactPageQueryResult = {
   AvailableHours: string | null;
 } | null;
 
-// Source: ./src/lib/queries/getFooterData.ts
+// Source: ./src/queries/footerQuery.ts
 // Variable: footerQuery
 // Query: *[_type == "footer"][0]{    "logo":logo.asset->url,    programmingTitle,    programmingText,    helpTitle,    "helpPhone": helpPhone->number,    locationTitle,    socialLinks[]-> {      "_key":_id,      url,      "plataform":type->title,      "icon": type->icon.asset->url      },    address-> {      street,      number,      district,      city,      state,      zip    },    mapEmbedUrl,  }
 export type FooterQueryResult = {
@@ -531,7 +531,7 @@ export type FooterQueryResult = {
   mapEmbedUrl: string | null;
 } | null;
 
-// Source: ./src/lib/queries/getHederData.ts
+// Source: ./src/queries/headerQuery.ts
 // Variable: headerQuery
 // Query: *[_type == "header"][0]{    items[]{      _id,      label,      link    }  }
 export type HeaderQueryResult = {
@@ -542,7 +542,7 @@ export type HeaderQueryResult = {
   }> | null;
 } | null;
 
-// Source: ./src/lib/queries/getHomePageData.ts
+// Source: ./src/queries/homePageQuery.ts
 // Variable: homePageQuery
 // Query: *[_type == "homePage"][0]{    heroHeadline,    heroDescription,    heroButtonTitle,    heroButtonLink,    "heroImage": heroImage.asset->url,    dividerText,    titleLive,    descriptionLive,    youtubeUrl,    buttonLiveText,    butonLiveLink,    "liveBannerImage": liveBannerImage.asset->url  }
 export type HomePageQueryResult = {
