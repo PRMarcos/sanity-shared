@@ -1,12 +1,4 @@
 import groq from "groq"
-import { sanityClient } from "../sanityClient"
-import { ContactPageQueryResult } from "src/types/sanity.types"
-
-
-export async function getContactPageData():Promise<ContactPageQueryResult> {
-  const result = await sanityClient.fetch(contactPageQuery)
-  return result
-}
 
 export const contactPageQuery = groq`
   *[_type == "contactPage"][0]{

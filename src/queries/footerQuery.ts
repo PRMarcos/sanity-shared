@@ -1,12 +1,4 @@
 import groq from "groq"
-import { sanityClient } from "../sanityClient"
-import { FooterQueryResult } from "src/types/sanity.types"
-
-
-export async function getFooterData():Promise<FooterQueryResult> {
-	const result = await sanityClient.fetch(footerQuery)
-	return result
-}
 
 export const footerQuery = groq`*[_type == "footer"][0]{
     "logo":logo.asset->url,
