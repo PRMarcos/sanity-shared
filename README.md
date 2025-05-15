@@ -1,10 +1,10 @@
 # 🧩 sanity-shared
 
-Pacote compartilhado contendo os schemas, queries GROQ, tipagens e funções auxiliares utilizadas por múltiplos projetos (como Sanity Studio e aplicações front-end).
+Pacote compartilhado contendo os schemas, queries GROQ, tipagens e funções auxiliares utilizadas exclusivamente pelo projeto do site institucional da Igreja Apostólica Monte Sião Linhares, incluindo o Sanity Studio e as aplicações front-end relacionadas.
 
 ## 🎯 Objetivo
 
-Garantir consistência e segurança na integração entre o Sanity e os projetos que consomem seus dados, centralizando os contratos de dados (schemas e queries) em um único repositório versionado.
+Garantir consistência e segurança na integração entre o Sanity e os projetos que consomem seus dados no site da Igreja Apostólica Monte Sião Linhares, centralizando os contratos de dados (schemas e queries) em um único repositório versionado e específico para esse projeto.
 
 ## 🚀 Funcionalidades
 
