@@ -18,7 +18,7 @@ Garantir consistência e segurança na integração entre o Sanity e os projetos
 ### Usando npm
 
 ```bash
-npm install git+https://github.com/usuario/sanity-shared.git
+npm install git+https://github.com/prmarcos/sanity-shared.git
 ```
 
 ## 🧑‍💻 Como usar
