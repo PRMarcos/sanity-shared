@@ -1,5 +1,6 @@
 import {defineConfig} from 'sanity'
 import {schemaTypes} from './src/schemas'
+import { colorInput } from '@sanity/color-input'
 
 
 export default defineConfig({
@@ -12,4 +13,7 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
+    plugins: [
+    colorInput(),
+  ],
 })
