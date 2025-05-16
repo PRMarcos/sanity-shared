@@ -42,7 +42,11 @@ export declare const schemaTypes: (({
     type: "document";
     name: "sermonSummary";
 } & Omit<import("sanity").DocumentDefinition, "preview"> & {
-    preview?: import("sanity").PreviewConfig<Record<string, string>, Record<never, any>> | undefined;
+    preview?: import("sanity").PreviewConfig<{
+        title: string;
+        subtitle: string;
+        media: string;
+    }, Record<"title" | "media" | "subtitle", any>> | undefined;
 }) | ({
     type: "document";
     name: "socialLink";
@@ -63,4 +67,20 @@ export declare const schemaTypes: (({
     name: "phoneEntry";
 } & Omit<import("sanity").DocumentDefinition, "preview"> & {
     preview?: import("sanity").PreviewConfig<Record<string, string>, Record<never, any>> | undefined;
+}) | ({
+    type: "document";
+    name: "sermonTag";
+} & Omit<import("sanity").DocumentDefinition, "preview"> & {
+    preview?: import("sanity").PreviewConfig<{
+        title: string;
+    }, Record<"title", any>> | undefined;
+}) | ({
+    type: "document";
+    name: "person";
+} & Omit<import("sanity").DocumentDefinition, "preview"> & {
+    preview?: import("sanity").PreviewConfig<{
+        title: string;
+        subtitle: string;
+        media: string;
+    }, Record<"title" | "media" | "subtitle", any>> | undefined;
 }))[];

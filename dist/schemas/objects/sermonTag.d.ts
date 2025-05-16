@@ -1,11 +1,9 @@
 declare const _default: {
     type: "document";
-    name: "sermonSummary";
+    name: "sermonTag";
 } & Omit<import("sanity").DocumentDefinition, "preview"> & {
     preview?: import("sanity").PreviewConfig<{
         title: string;
-        subtitle: string;
-        media: string;
-    }, Record<"title" | "media" | "subtitle", any>> | undefined;
+    }, Record<"title", any>> | undefined;
 };
 export default _default;

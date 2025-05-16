@@ -61,10 +61,13 @@ export type Geopoint = {
     lng?: number;
     alt?: number;
 };
-export type Slug = {
-    _type: "slug";
-    current?: string;
-    source?: string;
+export type SermonTag = {
+    _id: string;
+    _type: "sermonTag";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
 };
 export type SermonSummary = {
     _id: string;
@@ -73,6 +76,98 @@ export type SermonSummary = {
     _updatedAt: string;
     _rev: string;
     title?: string;
+    date?: string;
+    tags?: Array<{
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "sermonTag";
+    }>;
+    videoUrl?: string;
+    speaker?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "person";
+    };
+    backgroundImage?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
+    slug?: Slug;
+    content?: Array<{
+        children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+    }>;
+};
+export type Slug = {
+    _type: "slug";
+    current?: string;
+    source?: string;
+};
+export type Person = {
+    _id: string;
+    _type: "person";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name?: string;
+    birthDate?: string;
+    title?: string;
+    titleAbbreviation?: string;
+    bio?: Array<{
+        children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+    }>;
+    photo?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
 };
 export type Event = {
     _id: string;
@@ -80,7 +175,64 @@ export type Event = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    title?: string;
+    bannerDesktop?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
+    bannerMobile?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
+    titulo?: string;
+    descricaoCurta?: string;
+    sobre?: string;
+    programacao?: {
+        dataInicio?: string;
+        dataFim?: string;
+        horaInicio?: string;
+        horaFim?: string;
+    };
+    local?: string;
+    corEvento?: Color;
+    teaser?: string;
+    palestrantes?: Array<{
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "person";
+    }>;
+    organizador?: {
+        descricao?: string;
+        telefone?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "phoneEntry";
+        };
+        email?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "emailEntry";
+        };
+    };
 };
 export type Header = {
     _id: string;
@@ -452,7 +604,36 @@ export type SanityImageMetadata = {
     hasAlpha?: boolean;
     isOpaque?: boolean;
 };
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Slug | SermonSummary | Event | Header | AboutPage | OurSmedsPage | HomePage | Footer | ContactPage | PhoneEntry | EmailEntry | SocialLink | SupportedSocialMidia | Address | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type Color = {
+    _type: "color";
+    hex?: string;
+    alpha?: number;
+    hsl?: HslaColor;
+    hsv?: HsvaColor;
+    rgb?: RgbaColor;
+};
+export type RgbaColor = {
+    _type: "rgbaColor";
+    r?: number;
+    g?: number;
+    b?: number;
+    a?: number;
+};
+export type HsvaColor = {
+    _type: "hsvaColor";
+    h?: number;
+    s?: number;
+    v?: number;
+    a?: number;
+};
+export type HslaColor = {
+    _type: "hslaColor";
+    h?: number;
+    s?: number;
+    l?: number;
+    a?: number;
+};
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | SermonTag | SermonSummary | Slug | Person | Event | Header | AboutPage | OurSmedsPage | HomePage | Footer | ContactPage | PhoneEntry | EmailEntry | SocialLink | SupportedSocialMidia | Address | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Color | RgbaColor | HsvaColor | HslaColor;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 export type ContactPageQueryResult = {
     _id: string;

@@ -1,6 +1,6 @@
 declare const _default: {
     type: "document";
-    name: "sermonSummary";
+    name: "person";
 } & Omit<import("sanity").DocumentDefinition, "preview"> & {
     preview?: import("sanity").PreviewConfig<{
         title: string;
