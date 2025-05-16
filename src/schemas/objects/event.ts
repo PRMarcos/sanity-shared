@@ -70,7 +70,7 @@ export default defineType({
       name: 'palestrantes',
       title: 'Palestrantes',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'pessoa' }] }],
+      of: [{ type: 'reference', to: [{ type: 'person' }] }],
       validation: Rule =>
         Rule.required()
           .min(1)

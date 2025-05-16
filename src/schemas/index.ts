@@ -11,6 +11,8 @@ import socialLink from './objects/socialLink'
 import supportedSocialMidia from './objects/supportedSocialMidia'
 import email from './objects/email'
 import phone from './objects/phone'
+import sermonTag from './objects/sermonTag'
+import person from './objects/person'
 // outros...
 
 export const schemaTypes = [
@@ -26,6 +28,8 @@ export const schemaTypes = [
   socialLink,
   supportedSocialMidia,
   email,
-  phone
+  phone,
+  sermonTag,
+  person
   // outros...
 ]
