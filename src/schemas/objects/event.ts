@@ -1,6 +1,5 @@
 import { defineType, defineField } from 'sanity'
-import { richTextField } from 'src/utils/richTextField'
-import { richTextFieldSimple } from 'src/utils/richTextFieldSimple'
+import { richTextField, richTextFieldSimple } from '../../utils'
 
 export default defineType({
   name: 'event',

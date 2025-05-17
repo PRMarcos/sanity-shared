@@ -1,6 +1,6 @@
 
 import { defineType, defineField } from 'sanity'
-import { richTextField } from 'src/utils/richTextField'
+import { richTextField } from '../../utils'
 
 export default defineType({
   name: 'sermonSummary',
