@@ -14,8 +14,7 @@
     }
   },
   "scripts": {
-    "build": "tsc",
-    "update-types": "sanity schema extract && sanity typegen generate"
+    "build": "sanity schema extract && sanity typegen generate && tsc"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +25,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@sanity/code-input": "^5.1.2",
     "@sanity/color-input": "^4.0.3",
     "groq": "^3.88.3",
     "sanity": "^3.88.3"

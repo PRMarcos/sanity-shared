@@ -1,5 +1,6 @@
 
 import { defineType, defineField } from 'sanity'
+import { richTextField } from 'src/utils/richTextField'
 
 export default defineType({
   name: 'sermonSummary',
@@ -63,8 +64,7 @@ export default defineType({
     defineField({
       name: 'content',
       title: 'Resumo',
-      type: 'array',
-      of: [{ type: 'block' }],
+      ...richTextField
     }),
   ],
   preview: {
@@ -73,5 +73,21 @@ export default defineType({
       subtitle: 'date',
       media: 'backgroundImage',
     },
-  },
+    prepare({ title, subtitle, media }) {
+      const date = subtitle ? new Date(subtitle) : null
+
+      const formattedDate = date
+        ? `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1)
+          .toString()
+          .padStart(2, '0')}/${date.getFullYear()}`
+        : 'Data não definida'
+
+      return {
+        title,
+        subtitle: formattedDate,
+        media,
+      }
+    },
+  }
+  ,
 })

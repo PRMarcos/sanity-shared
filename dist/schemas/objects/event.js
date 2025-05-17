@@ -1,4 +1,6 @@
 import { defineType, defineField } from 'sanity';
+import { richTextField } from 'src/utils/richTextField';
+import { richTextFieldSimple } from 'src/utils/richTextFieldSimple';
 export default defineType({
     name: 'event',
     title: 'Cadastro de Evento',
@@ -16,25 +18,24 @@ export default defineType({
             type: 'image',
         }),
         defineField({
-            name: 'titulo',
+            name: 'title',
             title: 'Título',
             type: 'string',
             validation: Rule => Rule.required().error('O título é obrigatório.'),
         }),
         defineField({
-            name: 'descricaoCurta',
+            name: 'shortDescription',
             title: 'Descrição Curta',
-            type: 'text',
+            ...richTextFieldSimple,
             validation: Rule => Rule.required().error('A descrição curta é obrigatória.'),
         }),
         defineField({
-            name: 'sobre',
+            name: 'about',
             title: 'Sobre o Evento',
-            type: 'text',
-            validation: Rule => Rule.required().error('O campo "Sobre o Evento" é obrigatório.'),
+            ...richTextField
         }),
         defineField({
-            name: 'programacao',
+            name: 'schedule',
             title: 'Programação',
             type: 'object',
             fields: [
@@ -46,19 +47,19 @@ export default defineType({
             validation: Rule => Rule.required().error('A programação do evento é obrigatória.'),
         }),
         defineField({
-            name: 'local',
+            name: 'address',
             title: 'Local (Endereço)',
-            type: 'string',
+            type: 'reference',
+            to: [{ type: 'address' }],
             validation: Rule => Rule.required().error('O local do evento é obrigatório.'),
         }),
         defineField({
-            name: 'corEvento',
+            name: 'eventColor',
             title: 'Cor do Evento',
             type: 'color',
             options: {
                 colorFormat: 'hex',
             },
-            validation: Rule => Rule.required(),
         }),
         defineField({
             name: 'teaser',
@@ -66,27 +67,25 @@ export default defineType({
             type: 'url',
         }),
         defineField({
-            name: 'palestrantes',
+            name: 'speakers',
             title: 'Palestrantes',
             type: 'array',
             of: [{ type: 'reference', to: [{ type: 'person' }] }],
-            validation: Rule => Rule.required()
-                .min(1)
-                .error('Adicione pelo menos um palestrante.'),
         }),
         defineField({
-            name: 'organizador',
+            name: 'organizer',
             title: 'Organizador',
             type: 'object',
             validation: Rule => Rule.required().error('As informações do organizador são obrigatórias.'),
             fields: [
                 defineField({
-                    name: 'descricao',
+                    name: 'description',
                     title: 'Descrição do Organizador',
                     type: 'string',
+                    validation: Rule => Rule.required()
                 }),
                 {
-                    name: 'telefone',
+                    name: 'phone',
                     type: 'reference',
                     to: [{ type: 'phoneEntry' }],
                     title: 'Telefone',
@@ -97,7 +96,6 @@ export default defineType({
                     type: 'reference',
                     to: [{ type: 'emailEntry' }],
                     title: 'Email',
-                    validation: Rule => Rule.required(),
                 },
             ],
         }),

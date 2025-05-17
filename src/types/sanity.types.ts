@@ -119,17 +119,32 @@ export type SermonSummary = {
       _type: "span";
       _key: string;
     }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
     listItem?: "bullet" | "number";
     markDefs?: Array<{
       href?: string;
+      blank?: boolean;
       _type: "link";
       _key: string;
     }>;
     level?: number;
     _type: "block";
     _key: string;
-  }>;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  } | {
+    _key: string;
+  } & Code>;
 };
 
 export type Slug = {
@@ -210,28 +225,82 @@ export type Event = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  titulo?: string;
-  descricaoCurta?: string;
-  sobre?: string;
-  programacao?: {
+  title?: string;
+  shortDescription?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  about?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      blank?: boolean;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  } | {
+    _key: string;
+  } & Code>;
+  schedule?: {
     dataInicio?: string;
     dataFim?: string;
     horaInicio?: string;
     horaFim?: string;
   };
-  local?: string;
-  corEvento?: Color;
+  address?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "address";
+  };
+  eventColor?: Color;
   teaser?: string;
-  palestrantes?: Array<{
+  speakers?: Array<{
     _ref: string;
     _type: "reference";
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "person";
   }>;
-  organizador?: {
-    descricao?: string;
-    telefone?: {
+  organizer?: {
+    description?: string;
+    phone?: {
       _ref: string;
       _type: "reference";
       _weak?: boolean;
@@ -632,6 +701,14 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
+export type Code = {
+  _type: "code";
+  language?: string;
+  filename?: string;
+  code?: string;
+  highlightedLines?: Array<number>;
+};
+
 export type Color = {
   _type: "color";
   hex?: string;
@@ -665,7 +742,7 @@ export type HslaColor = {
   a?: number;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | SermonTag | SermonSummary | Slug | Person | Event | Header | AboutPage | OurSmedsPage | HomePage | Footer | ContactPage | PhoneEntry | EmailEntry | SocialLink | SupportedSocialMidia | Address | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Color | RgbaColor | HsvaColor | HslaColor;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | SermonTag | SermonSummary | Slug | Person | Event | Header | AboutPage | OurSmedsPage | HomePage | Footer | ContactPage | PhoneEntry | EmailEntry | SocialLink | SupportedSocialMidia | Address | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Code | Color | RgbaColor | HsvaColor | HslaColor;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/queries/contactPageQuery.ts
 // Variable: contactPageQuery
