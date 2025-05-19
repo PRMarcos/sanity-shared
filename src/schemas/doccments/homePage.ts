@@ -1,6 +1,7 @@
 
 import {defineType, defineField} from "sanity"
-import { validateImageInput } from '../../utils/validateImageInput'
+import { styledText, validateImageInput } from '../../utils'
+import {simpleText} from "../../utils";
 
 export default defineType({
     name:"homePage",
@@ -8,27 +9,16 @@ export default defineType({
     type:"document",
     fields:[
         defineField({
-            name:"heroHeadline",
-            title:"HeadLine sessão Hero",
-            type:"array",
-            of:[
-                {
-                    type:"block",
-                    styles:[],
-                    lists:[],
-                    marks:{
-                        decorators:[{title: 'Negrito', value: 'strong'}],
-                        annotations:[]
-                    }
-                
-                }
-
-            ]
-        }),
+            ...simpleText({
+                name:"heroHeadline",
+                title:"HeadLine sessão Hero"
+            }),
+            }),
         defineField({
-            name:"heroDescription",
-            title:"Texto da sessão Hero",
-            type:"text",
+            ...styledText({
+                name:"heroDescription",
+                title:"Texto da sessão Hero"
+            }),
         }),
         defineField({
             name:"heroButtonTitle",
@@ -49,23 +39,11 @@ export default defineType({
                     .custom(validateImageInput({ maxWidth: 2000, })),
         }),
         defineField({
-            name:"dividerText",
-            title:"Texto Divisor de sessão",
-            type:"array",
+            ...simpleText({
+                name:"dividerText",
+                title:"Texto Divisor de sessão"
+            }),
             validation: Rule => Rule.required().error('Esse é um campo obrigatório.'),
-            of:[
-                {
-                    type:"block",
-                    styles:[],
-                    lists:[],
-                    marks:{
-                        decorators:[{title: 'Negrito', value: 'strong'}],
-                        annotations:[]
-                    }
-                
-                }
-
-            ]
         }),
         defineField({
             name: 'titleLive',
@@ -74,16 +52,11 @@ export default defineType({
             validation: Rule => Rule.required().error('Esse é um campo obrigatório.'),
           }),
           defineField({
-            name: 'descriptionLive',
-            title: 'Descrição Sessão Live',
-            type: 'array',
+            ...simpleText({
+                name: 'descriptionLive',
+                title: 'Descrição Sessão Live',
+            }),
             validation: Rule => Rule.required().error('Esse é um campo obrigatório.'),
-            of:[
-                {
-                    type:"block",
-                }
-
-            ]
           }),
           defineField({
             name: 'youtubeUrl',

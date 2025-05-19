@@ -1,5 +1,5 @@
 import { defineType, defineField } from 'sanity';
-import { validateImageInput } from '../../utils/validateImageInput';
+import { richText, validateImageInput } from '../../utils';
 export default defineType({
     name: 'ourSmedsPage',
     title: 'Página Nossos SMEDS',
@@ -19,15 +19,17 @@ export default defineType({
                 .custom(validateImageInput({ maxHeight: 1000, maxWidth: 2000, aspectRatio: 2 })),
         }),
         defineField({
-            name: 'description',
-            title: 'Descrição geral dos SMEDs',
-            type: 'text',
+            ...richText({
+                name: 'description',
+                title: 'Descrição geral dos SMEDs',
+            }),
             validation: Rule => Rule.required().error('Esse é um campo obrigatório.'),
         }),
         defineField({
-            name: 'conclusion',
-            title: 'Conclusão da Pagina SMEDs',
-            type: 'text',
+            ...richText({
+                name: 'conclusion',
+                title: 'Conclusão da Pagina SMEDs'
+            }),
             validation: Rule => Rule.required().error('Esse é um campo obrigatório.'),
         }),
     ],

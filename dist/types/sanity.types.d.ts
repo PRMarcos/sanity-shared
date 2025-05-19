@@ -222,10 +222,11 @@ export type Event = {
             _type: "span";
             _key: string;
         }>;
-        style?: "normal" | "h1" | "h2" | "h3" | "h4";
+        style?: "normal";
         listItem?: never;
         markDefs?: Array<{
             href?: string;
+            blank?: boolean;
             _type: "link";
             _key: string;
         }>;
@@ -366,8 +367,72 @@ export type OurSmedsPage = {
         crop?: SanityImageCrop;
         _type: "image";
     };
-    description?: string;
-    conclusion?: string;
+    description?: Array<{
+        children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+            href?: string;
+            blank?: boolean;
+            _type: "link";
+            _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+    } | {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+        _key: string;
+    } | {
+        _key: string;
+    } & Code>;
+    conclusion?: Array<{
+        children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+            href?: string;
+            blank?: boolean;
+            _type: "link";
+            _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+    } | {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+        _key: string;
+    } | {
+        _key: string;
+    } & Code>;
 };
 export type HomePage = {
     _id: string;
@@ -384,12 +449,35 @@ export type HomePage = {
         }>;
         style?: "normal";
         listItem?: never;
-        markDefs?: null;
+        markDefs?: Array<{
+            href?: string;
+            blank?: boolean;
+            _type: "link";
+            _key: string;
+        }>;
         level?: number;
         _type: "block";
         _key: string;
     }>;
-    heroDescription?: string;
+    heroDescription?: Array<{
+        children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+        listItem?: never;
+        markDefs?: Array<{
+            href?: string;
+            blank?: boolean;
+            _type: "link";
+            _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+    }>;
     heroButtonTitle?: string;
     heroButtonLink?: string;
     heroImage?: {
@@ -413,7 +501,12 @@ export type HomePage = {
         }>;
         style?: "normal";
         listItem?: never;
-        markDefs?: null;
+        markDefs?: Array<{
+            href?: string;
+            blank?: boolean;
+            _type: "link";
+            _key: string;
+        }>;
         level?: number;
         _type: "block";
         _key: string;
@@ -426,10 +519,11 @@ export type HomePage = {
             _type: "span";
             _key: string;
         }>;
-        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-        listItem?: "bullet" | "number";
+        style?: "normal";
+        listItem?: never;
         markDefs?: Array<{
             href?: string;
+            blank?: boolean;
             _type: "link";
             _key: string;
         }>;
@@ -515,7 +609,39 @@ export type ContactPage = {
         crop?: SanityImageCrop;
         _type: "image";
     };
-    description?: string;
+    description?: Array<{
+        children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+            href?: string;
+            blank?: boolean;
+            _type: "link";
+            _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+    } | {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+        _key: string;
+    } | {
+        _key: string;
+    } & Code>;
     address?: {
         _ref: string;
         _type: "reference";
@@ -715,7 +841,39 @@ export type ContactPageQueryResult = {
     _id: string;
     title: string | null;
     bannerImage: string | null;
-    description: string | null;
+    description: Array<{
+        _key: string;
+    } & Code | {
+        children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+        }>;
+        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+            href?: string;
+            blank?: boolean;
+            _type: "link";
+            _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+    } | {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+        _key: string;
+    }> | null;
     address: {
         street: string | null;
         number: string | null;
@@ -771,12 +929,35 @@ export type HomePageQueryResult = {
         }>;
         style?: "normal";
         listItem?: never;
-        markDefs?: null;
+        markDefs?: Array<{
+            href?: string;
+            blank?: boolean;
+            _type: "link";
+            _key: string;
+        }>;
         level?: number;
         _type: "block";
         _key: string;
     }> | null;
-    heroDescription: string | null;
+    heroDescription: Array<{
+        children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+        }>;
+        style?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: never;
+        markDefs?: Array<{
+            href?: string;
+            blank?: boolean;
+            _type: "link";
+            _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+    }> | null;
     heroButtonTitle: string | null;
     heroButtonLink: string | null;
     heroImage: string | null;
@@ -789,7 +970,12 @@ export type HomePageQueryResult = {
         }>;
         style?: "normal";
         listItem?: never;
-        markDefs?: null;
+        markDefs?: Array<{
+            href?: string;
+            blank?: boolean;
+            _type: "link";
+            _key: string;
+        }>;
         level?: number;
         _type: "block";
         _key: string;
@@ -802,10 +988,11 @@ export type HomePageQueryResult = {
             _type: "span";
             _key: string;
         }>;
-        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-        listItem?: "bullet" | "number";
+        style?: "normal";
+        listItem?: never;
         markDefs?: Array<{
             href?: string;
+            blank?: boolean;
             _type: "link";
             _key: string;
         }>;

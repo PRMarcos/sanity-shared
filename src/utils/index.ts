@@ -1,4 +1,7 @@
-import { richTextField } from "./richTextField";
-import { richTextFieldSimple } from "./richTextFieldSimple";
+import { richText } from "./richText";
+import { styledText } from "./styledText";
+import {simpleText} from "./simpleText";
+import { validateImageInput } from "./validateImageInput";
 
-export {richTextField, richTextFieldSimple}
+
+export {richText, styledText,simpleText,validateImageInput}

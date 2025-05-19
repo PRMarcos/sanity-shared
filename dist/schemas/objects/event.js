@@ -1,5 +1,5 @@
 import { defineType, defineField } from 'sanity';
-import { richTextField, richTextFieldSimple } from '../../utils';
+import { richText, simpleText } from '../../utils';
 export default defineType({
     name: 'event',
     title: 'Cadastro de Evento',
@@ -23,15 +23,18 @@ export default defineType({
             validation: Rule => Rule.required().error('O título é obrigatório.'),
         }),
         defineField({
-            name: 'shortDescription',
-            title: 'Descrição Curta',
-            ...richTextFieldSimple,
+            ...simpleText({
+                name: "shortDescription",
+                title: "Descrição Curta"
+            }),
             validation: Rule => Rule.required().error('A descrição curta é obrigatória.'),
         }),
         defineField({
-            name: 'about',
-            title: 'Sobre o Evento',
-            ...richTextField
+            ...richText({
+                name: "about",
+                title: "Sobre o Evento"
+            }),
+            validation: Rule => Rule.required().error('A descrição é obrigatória.'),
         }),
         defineField({
             name: 'schedule',

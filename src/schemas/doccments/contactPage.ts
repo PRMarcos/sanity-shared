@@ -1,5 +1,5 @@
 import { defineType, defineField} from 'sanity'
-import { validateImageInput } from '../../utils/validateImageInput'
+import { richText, validateImageInput } from '../../utils'
 
 
 const phoneRegex: RegExp = /^\+\d{1,3}\s?\(?\d{1,3}\)?\s?\d{4,5}-?\d{4}$/;
@@ -25,9 +25,9 @@ export default defineType({
               .custom(validateImageInput({ maxHeight: 1000, maxWidth: 2000, aspectRatio: 2 })), 
     }),
     defineField({
+      ...richText({
       name: 'description',
-      title: 'Descrição',
-      type: 'text',
+      title: 'Descrição'}),
       validation: Rule => Rule.required().error('Esse é um campo obrigatório.'),
     }),
     defineField({

@@ -1,8 +1,7 @@
-import { defineField } from 'sanity'
-
-
-export const  richTextField = {
-
+export function richText({title,name}:{title:string,name:string}) { 
+  return{
+  title: title,
+  name: name, 
   type: 'array',
   of: [
     {
@@ -51,4 +50,4 @@ export const  richTextField = {
     { type: 'image', options: { hotspot: true } },
     { type: 'code', title: 'Código' },
   ],
-}
+}}

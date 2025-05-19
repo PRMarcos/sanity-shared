@@ -1,5 +1,5 @@
 import { defineType, defineField } from 'sanity';
-import { richTextField } from '../../utils';
+import { richText } from '../../utils';
 export default defineType({
     name: 'sermonSummary',
     title: 'Cadastro de Resumos das Palavras',
@@ -59,9 +59,11 @@ export default defineType({
             validation: Rule => Rule.required(),
         }),
         defineField({
-            name: 'content',
-            title: 'Resumo',
-            ...richTextField
+            ...richText({
+                name: "content",
+                title: "Resumo"
+            }),
+            validation: Rule => Rule.required(),
         }),
     ],
     preview: {

@@ -1,15 +1,14 @@
-export declare const richTextField: {
+export declare function simpleText({ title, name }: {
+    title: string;
+    name: string;
+}): {
+    title: string;
+    name: string;
     type: string;
-    of: ({
+    of: {
         type: string;
-        styles: {
-            title: string;
-            value: string;
-        }[];
-        lists: {
-            title: string;
-            value: string;
-        }[];
+        styles: never[];
+        lists: never[];
         marks: {
             decorators: {
                 title: string;
@@ -32,23 +31,5 @@ export declare const richTextField: {
                 })[];
             }[];
         };
-        options?: undefined;
-        title?: undefined;
-    } | {
-        type: string;
-        options: {
-            hotspot: boolean;
-        };
-        styles?: undefined;
-        lists?: undefined;
-        marks?: undefined;
-        title?: undefined;
-    } | {
-        type: string;
-        title: string;
-        styles?: undefined;
-        lists?: undefined;
-        marks?: undefined;
-        options?: undefined;
-    })[];
+    }[];
 };
