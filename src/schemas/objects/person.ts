@@ -1,5 +1,5 @@
 import { defineType, defineField } from 'sanity'
-import { validateImageInput } from 'src/utils'
+import { validateImageInput } from '../../utils'
 
 export default defineType({
   name: 'person',
