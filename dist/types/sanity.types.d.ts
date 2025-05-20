@@ -80,6 +80,25 @@ export type Smed = {
         crop?: SanityImageCrop;
         _type: "image";
     };
+    smedDescription?: Array<{
+        children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+        }>;
+        style?: "normal";
+        listItem?: never;
+        markDefs?: Array<{
+            href?: string;
+            blank?: boolean;
+            _type: "link";
+            _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+    }>;
 };
 export type SermonTag = {
     _id: string;

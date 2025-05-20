@@ -1,5 +1,5 @@
 import { defineType, defineField } from 'sanity';
-import { validateImageInput } from '../../utils';
+import { validateImageInput, simpleText } from '../../utils';
 export default defineType({
     name: 'smed',
     title: 'Cadastro de SMEDS',
@@ -19,6 +19,13 @@ export default defineType({
             validation: Rule => Rule
                 .custom(validateImageInput({ minWidth: 264, aspectRatio: 0.66 }))
                 .required()
+        }),
+        defineField({
+            ...simpleText({
+                name: "smedDescription",
+                title: "Descrição do Semd"
+            }),
+            validation: Rule => Rule.required().error('A descrição é obrigatória.'),
         }),
     ],
     preview: {

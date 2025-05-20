@@ -1,5 +1,5 @@
 import { defineType, defineField } from 'sanity'
-import { validateImageInput } from '../../utils'
+import { validateImageInput, simpleText } from '../../utils'
 
 export default defineType({
   name: 'smed',
@@ -15,11 +15,18 @@ export default defineType({
     defineField({
       name: 'banner',
       title: 'Imagem Representativa do SMED',
-      description:"Imagem para ser usada como fundo nos cards de apresentação, resolução e aspecto minimos esperados 264x400",
+      description: "Imagem para ser usada como fundo nos cards de apresentação, resolução e aspecto minimos esperados 264x400",
       type: 'image',
       validation: Rule => Rule
-      .custom(validateImageInput({ minWidth:264, aspectRatio: 0.66 }))
-      .required()
+        .custom(validateImageInput({ minWidth: 264, aspectRatio: 0.66 }))
+        .required()
+    }),
+    defineField({
+      ...simpleText({
+        name: "smedDescription",
+        title: "Descrição do Semd"
+      }),
+      validation: Rule => Rule.required().error('A descrição é obrigatória.'),
     }),
   ],
   preview: {
