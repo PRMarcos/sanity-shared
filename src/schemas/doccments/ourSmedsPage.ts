@@ -17,8 +17,9 @@ export default defineType({
       title: 'Imagem de banner',
       description:"Aspecto da imagem 2x1, resolução esperada 2000x1000",
       type: 'image',
-      validation: Rule => Rule.required().error('Esse é um campo obrigatório.')
-              .custom(validateImageInput({ maxHeight: 1000, maxWidth: 2000, aspectRatio: 2 })),
+      validation: Rule => Rule
+              .custom(validateImageInput({ maxHeight: 1000, maxWidth: 2000, aspectRatio: 2 }))
+              .required()
     }),
     defineField({
       ...richText({
@@ -26,6 +27,13 @@ export default defineType({
         title: 'Descrição geral dos SMEDs',
       }),
       validation: Rule => Rule.required().error('Esse é um campo obrigatório.'),
+    }),
+    defineField({
+      name:"smedlist",
+      title:"Lista dos smeds",
+      type:"array",
+      of: [{ type: 'reference', to: [{ type: 'smed' }] }],
+       validation: Rule => Rule.required().min(1).error('Adicione ao menos um item.'),
     }),
     defineField({
       ...richText({
