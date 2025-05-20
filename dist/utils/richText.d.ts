@@ -41,9 +41,7 @@ export declare function richText({ title, name }: {
         title?: undefined;
     } | {
         type: string;
-        options: {
-            hotspot: boolean;
-        };
+        options: {};
         styles?: undefined;
         lists?: undefined;
         marks?: undefined;

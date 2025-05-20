@@ -37,7 +37,11 @@ export declare const schemaTypes: (({
     type: "document";
     name: "event";
 } & Omit<import("sanity").DocumentDefinition, "preview"> & {
-    preview?: import("sanity").PreviewConfig<Record<string, string>, Record<never, any>> | undefined;
+    preview?: import("sanity").PreviewConfig<{
+        title: string;
+        media: string;
+        firstDay: string;
+    }, Record<"title" | "media" | "firstDay", any>> | undefined;
 }) | ({
     type: "document";
     name: "sermonSummary";
@@ -83,4 +87,12 @@ export declare const schemaTypes: (({
         subtitle: string;
         media: string;
     }, Record<"title" | "media" | "subtitle", any>> | undefined;
+}) | ({
+    type: "document";
+    name: "smed";
+} & Omit<import("sanity").DocumentDefinition, "preview"> & {
+    preview?: import("sanity").PreviewConfig<{
+        title: string;
+        media: string;
+    }, Record<"title" | "media", any>> | undefined;
 }))[];

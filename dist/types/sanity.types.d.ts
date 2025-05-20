@@ -61,6 +61,26 @@ export type Geopoint = {
     lng?: number;
     alt?: number;
 };
+export type Smed = {
+    _id: string;
+    _type: "smed";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    banner?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
+};
 export type SermonTag = {
     _id: string;
     _type: "sermonTag";
@@ -91,7 +111,7 @@ export type SermonSummary = {
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "person";
     };
-    backgroundImage?: {
+    background?: {
         asset?: {
             _ref: string;
             _type: "reference";
@@ -190,7 +210,27 @@ export type Event = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    bannerDesktop?: {
+    title?: string;
+    shortDescription?: Array<{
+        children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+        }>;
+        style?: "normal";
+        listItem?: never;
+        markDefs?: Array<{
+            href?: string;
+            blank?: boolean;
+            _type: "link";
+            _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+    }>;
+    banner?: {
         asset?: {
             _ref: string;
             _type: "reference";
@@ -214,26 +254,18 @@ export type Event = {
         crop?: SanityImageCrop;
         _type: "image";
     };
-    title?: string;
-    shortDescription?: Array<{
-        children?: Array<{
-            marks?: Array<string>;
-            text?: string;
-            _type: "span";
-            _key: string;
-        }>;
-        style?: "normal";
-        listItem?: never;
-        markDefs?: Array<{
-            href?: string;
-            blank?: boolean;
-            _type: "link";
-            _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-    }>;
+    backgoround?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
     about?: Array<{
         children?: Array<{
             marks?: Array<string>;
@@ -267,12 +299,20 @@ export type Event = {
     } | {
         _key: string;
     } & Code>;
-    schedule?: {
-        dataInicio?: string;
-        dataFim?: string;
-        horaInicio?: string;
-        horaFim?: string;
-    };
+    schedule?: Array<{
+        date?: string;
+        startTime?: string;
+        endTime?: string;
+        sessions?: Array<{
+            title?: string;
+            description?: string;
+            time?: string;
+            _type: "session";
+            _key: string;
+        }>;
+        _type: "daySchedule";
+        _key: string;
+    }>;
     address?: {
         _ref: string;
         _type: "reference";
@@ -400,6 +440,13 @@ export type OurSmedsPage = {
     } | {
         _key: string;
     } & Code>;
+    smedlist?: Array<{
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "smed";
+    }>;
     conclusion?: Array<{
         children?: Array<{
             marks?: Array<string>;
@@ -835,7 +882,7 @@ export type HslaColor = {
     l?: number;
     a?: number;
 };
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | SermonTag | SermonSummary | Slug | Person | Event | Header | AboutPage | OurSmedsPage | HomePage | Footer | ContactPage | PhoneEntry | EmailEntry | SocialLink | SupportedSocialMidia | Address | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Code | Color | RgbaColor | HsvaColor | HslaColor;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Smed | SermonTag | SermonSummary | Slug | Person | Event | Header | AboutPage | OurSmedsPage | HomePage | Footer | ContactPage | PhoneEntry | EmailEntry | SocialLink | SupportedSocialMidia | Address | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Code | Color | RgbaColor | HsvaColor | HslaColor;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 export type ContactPageQueryResult = {
     _id: string;

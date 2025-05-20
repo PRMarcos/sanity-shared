@@ -19,10 +19,11 @@ export default defineType({
     defineField({
       name: 'bannerImage',
       title: 'Imagem de banner',
-      description:"Aspecto da imagem 2x1, resolução esperada 2000x1000",
+      description:"Banner principal da página.Resolução e aspecto minimos esperados 1280x480",
       type: 'image',
-      validation: Rule => Rule.required().error('Esse é um campo obrigatório.')
-              .custom(validateImageInput({ maxHeight: 1000, maxWidth: 2000, aspectRatio: 2 })), 
+      validation: Rule => Rule
+              .custom(validateImageInput({ minWidth:1280, aspectRatio: 2.67 }))
+              .required()
     }),
     defineField({
       ...richText({

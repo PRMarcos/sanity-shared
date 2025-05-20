@@ -1,11 +1,10 @@
 declare const _default: {
     type: "document";
-    name: "event";
+    name: "smed";
 } & Omit<import("sanity").DocumentDefinition, "preview"> & {
     preview?: import("sanity").PreviewConfig<{
         title: string;
         media: string;
-        firstDay: string;
-    }, Record<"title" | "media" | "firstDay", any>> | undefined;
+    }, Record<"title" | "media", any>> | undefined;
 };
 export default _default;

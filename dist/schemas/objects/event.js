@@ -1,21 +1,10 @@
 import { defineType, defineField } from 'sanity';
-import { richText, simpleText } from '../../utils';
+import { richText, simpleText, validateImageInput } from '../../utils';
 export default defineType({
     name: 'event',
     title: 'Cadastro de Evento',
     type: 'document',
     fields: [
-        defineField({
-            name: 'bannerDesktop',
-            title: 'Banner (Desktop)',
-            type: 'image',
-            validation: Rule => Rule.required().error('O banner para desktop é obrigatório.'),
-        }),
-        defineField({
-            name: 'bannerMobile',
-            title: 'Banner (Mobile)',
-            type: 'image',
-        }),
         defineField({
             name: 'title',
             title: 'Título',
@@ -30,6 +19,30 @@ export default defineType({
             validation: Rule => Rule.required().error('A descrição curta é obrigatória.'),
         }),
         defineField({
+            name: 'banner',
+            title: 'Banner (Desktop)',
+            description: "Banner principal do evento, vai ser usado como capa principal no desktop. resolução e aspecto minimo esperado 1280x480",
+            type: 'image',
+            validation: Rule => Rule.required()
+                .custom(validateImageInput({ minWidth: 1280, aspectRatio: 2.67 }))
+        }),
+        defineField({
+            name: 'bannerMobile',
+            title: 'Banner (Mobile)',
+            description: "Banner principal do evento, vai ser usado como capa principal no mobile. resolução e aspecto minimo esperado 375x400",
+            type: 'image',
+            validation: Rule => Rule
+                .custom(validateImageInput({ minWidth: 375, aspectRatio: 0.9375 }))
+        }),
+        defineField({
+            name: 'backgoround',
+            description: "Imagem que serve de fundo para os cards do evento, resolução minima e aspecto esperado 507x398  ",
+            title: 'Imagem de fundo para o evento',
+            type: 'image',
+            validation: Rule => Rule.required()
+                .custom(validateImageInput({ minWidth: 1280, aspectRatio: 1.274 }))
+        }),
+        defineField({
             ...richText({
                 name: "about",
                 title: "Sobre o Evento"
@@ -38,15 +51,53 @@ export default defineType({
         }),
         defineField({
             name: 'schedule',
-            title: 'Programação',
-            type: 'object',
-            fields: [
-                defineField({ name: 'dataInicio', title: 'Data de Início', type: 'date' }),
-                defineField({ name: 'dataFim', title: 'Data de Fim', type: 'date' }),
-                defineField({ name: 'horaInicio', title: 'Hora de Início', type: 'string' }),
-                defineField({ name: 'horaFim', title: 'Hora de Fim', type: 'string' }),
+            title: 'Programação do Evento',
+            type: 'array',
+            validation: Rule => Rule.required().min(1),
+            of: [
+                defineField({
+                    name: 'daySchedule',
+                    title: 'Dia da Programação',
+                    type: 'object',
+                    fields: [
+                        defineField({
+                            name: 'date',
+                            title: 'Data',
+                            type: 'date',
+                            validation: Rule => Rule.required(),
+                        }),
+                        defineField({
+                            name: 'startTime',
+                            title: 'Hora de Início',
+                            type: 'string',
+                            validation: Rule => Rule.required(),
+                        }),
+                        defineField({
+                            name: 'endTime',
+                            title: 'Hora de Término',
+                            type: 'string',
+                            validation: Rule => Rule.required(),
+                        }),
+                        defineField({
+                            name: 'sessions',
+                            title: 'Programações do Dia',
+                            type: 'array',
+                            of: [
+                                defineField({
+                                    name: 'session',
+                                    title: 'Sessão',
+                                    type: 'object',
+                                    fields: [
+                                        { name: 'title', title: 'Título', type: 'string' },
+                                        { name: 'description', title: 'Descrição', type: 'text' },
+                                        { name: 'time', title: 'Horário', type: 'string' },
+                                    ],
+                                }),
+                            ],
+                        }),
+                    ],
+                }),
             ],
-            validation: Rule => Rule.required().error('A programação do evento é obrigatória.'),
         }),
         defineField({
             name: 'address',
@@ -102,4 +153,22 @@ export default defineType({
             ],
         }),
     ],
+    preview: {
+        select: {
+            title: 'title',
+            media: 'bannerDesktop',
+            firstDay: 'schedule.0.date',
+        },
+        prepare(selection) {
+            const { title, media, firstDay } = selection;
+            const formattedDate = firstDay
+                ? new Date(firstDay).toLocaleDateString('pt-BR')
+                : 'Sem data definida';
+            return {
+                title,
+                media,
+                subtitle: `Início: ${formattedDate}`,
+            };
+        },
+    }
 });

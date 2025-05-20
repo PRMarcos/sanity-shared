@@ -1,23 +1,12 @@
 import { defineType, defineField } from 'sanity'
-import { richText, simpleText, styledText } from '../../utils'
+import { richText, simpleText, styledText, validateImageInput } from '../../utils'
 
 export default defineType({
   name: 'event',
   title: 'Cadastro de Evento',
   type: 'document',
   fields: [
-    defineField({
-      name: 'bannerDesktop',
-      title: 'Banner (Desktop)',
-      type: 'image',
-      validation: Rule => Rule.required()
-    }),
-    defineField({
-      name: 'bannerMobile',
-      title: 'Banner (Mobile)',
-      type: 'image',
-    }),
-    defineField({
+      defineField({
       name: 'title',
       title: 'Título',
       type: 'string',
@@ -29,6 +18,30 @@ export default defineType({
         title: "Descrição Curta"
       }),
       validation: Rule => Rule.required().error('A descrição curta é obrigatória.'),
+    }),
+    defineField({
+      name: 'banner',
+      title: 'Banner (Desktop)',
+      description:"Banner principal do evento, vai ser usado como capa principal no desktop. resolução e aspecto minimo esperado 1280x480",
+      type: 'image',
+      validation: Rule => Rule.required()
+      .custom(validateImageInput({ minWidth:1280, aspectRatio: 2.67 }))
+    }),
+     defineField({
+      name: 'bannerMobile',
+      title: 'Banner (Mobile)',
+      description:"Banner principal do evento, vai ser usado como capa principal no mobile. resolução e aspecto minimo esperado 375x400",
+      type: 'image',
+      validation: Rule => Rule
+      .custom(validateImageInput({ minWidth:375, aspectRatio: 0.9375 }))
+    }),
+    defineField({
+      name: 'backgoround',
+      description:"Imagem que serve de fundo para os cards do evento, resolução minima e aspecto esperado 507x398  ",
+      title: 'Imagem de fundo para o evento',
+      type: 'image',
+      validation: Rule => Rule.required()
+      .custom(validateImageInput({ minWidth:1280, aspectRatio: 1.274 }))
     }),
     defineField({
       ...richText({

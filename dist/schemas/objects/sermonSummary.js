@@ -1,5 +1,5 @@
 import { defineType, defineField } from 'sanity';
-import { richText } from '../../utils';
+import { richText, validateImageInput } from '../../utils';
 export default defineType({
     name: 'sermonSummary',
     title: 'Cadastro de Resumos das Palavras',
@@ -42,11 +42,13 @@ export default defineType({
             validation: Rule => Rule.required(),
         }),
         defineField({
-            name: 'backgroundImage',
+            name: 'background',
             title: 'Imagem de fundo',
+            description: " Imagem de fundo para ser usada nos cards de apresentação",
             type: 'image',
-            options: { hotspot: true },
-            validation: Rule => Rule.required(),
+            validation: Rule => Rule
+                .custom(validateImageInput({ minWidth: 1280, aspectRatio: 2.67 }))
+                .required(),
         }),
         defineField({
             name: 'slug',

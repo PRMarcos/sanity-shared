@@ -21,8 +21,10 @@ export default defineType({
       name: 'logo',
       title: 'Logo',
       type: 'image',
-      validation: Rule => Rule.required().error('Esse é um campo obrigatório.')
-              .custom(validateImageInput({ maxWidth: 300 })),
+      description:"Logo da sessão footer. Resolução e aspecto minimos esperados 208x51",
+      validation: Rule => Rule
+              .custom(validateImageInput({ minWidth: 208 }))
+              .required()
     }),
     defineField({
       name: 'programmingTitle',

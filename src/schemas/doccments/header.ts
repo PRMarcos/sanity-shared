@@ -38,14 +38,15 @@ export default defineType({
     defineField({
       name: 'icon',
       title: 'Ícone do header',
-      description: "Imagem de icone do header. Precisa ser no maximo 100x100 e precisa ser uma imagem quadrada",
+      description: "Imagem de icone do header. Precisa ser no mínimo 50x50 e precisa ser uma imagem quadrada",
       type: 'image',
       options: {
         hotspot: false,
       },
       validation: Rule =>
-        Rule.required()
-          .custom(validateImageInput({ maxHeight: 100, maxWidth: 100, aspectRatio: 1 })),
+        Rule
+          .custom(validateImageInput({ minWidth: 50, aspectRatio: 1 }))
+          .required()
     }),
   ],
   preview: {

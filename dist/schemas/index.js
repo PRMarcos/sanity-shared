@@ -13,6 +13,7 @@ import email from './objects/email';
 import phone from './objects/phone';
 import sermonTag from './objects/sermonTag';
 import person from './objects/person';
+import smed from './objects/smed';
 // outros...
 export const schemaTypes = [
     contactPage,
@@ -29,6 +30,7 @@ export const schemaTypes = [
     email,
     phone,
     sermonTag,
-    person
+    person,
+    smed
     // outros...
 ];

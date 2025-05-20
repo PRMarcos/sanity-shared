@@ -21,11 +21,13 @@ export default defineType({
       name: 'icon',
       title: 'Ícone',
       type: 'image',
+      description:"Icone da rede social em formato de imagem",
       options: {
         hotspot: true,
       },
-      validation: Rule => Rule.required().error('Esse é um campo obrigatório.')
-              .custom(validateImageInput({ maxHeight: 100, aspectRatio: 1 })),
+      validation: Rule => Rule
+              .custom(validateImageInput({ minWidth: 50, aspectRatio: 1 }))
+              .required()
     }),
   ],
 })

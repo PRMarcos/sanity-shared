@@ -1,4 +1,5 @@
 import { defineType, defineField } from 'sanity'
+import { validateImageInput } from 'src/utils'
 
 export default defineType({
   name: 'person',
@@ -38,7 +39,11 @@ export default defineType({
       name: 'photo',
       title: 'Imagem',
       type: 'image',
+      description:"Imagem de perfil para ser usadas nas aperesentaões, resolução e aspectos minimos esperados 500x500",
       options: { hotspot: true },
+      validation: Rule => Rule
+      .custom(validateImageInput({ minWidth:500, aspectRatio: 1 }))
+      .required()
     }),
   ],
   preview: {

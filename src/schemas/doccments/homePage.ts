@@ -82,9 +82,10 @@ export default defineType({
           defineField({
             name: 'liveBannerImage',
             title: 'Banner Sessão Live',
+            description:"Banner da sessão de live. Resolução e aspecto minimos esperados 177x342",
             type: 'image',
             validation: Rule => Rule
-                .custom(validateImageInput({ maxHeight: 600})),
+                .custom(validateImageInput({ minHeight: 342})),
         }),
     ],
      preview: {
