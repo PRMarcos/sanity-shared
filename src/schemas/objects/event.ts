@@ -10,7 +10,7 @@ export default defineType({
       name: 'bannerDesktop',
       title: 'Banner (Desktop)',
       type: 'image',
-      validation: Rule => Rule.required().error('O banner para desktop é obrigatório.'),
+      validation: Rule => Rule.required()
     }),
     defineField({
       name: 'bannerMobile',
@@ -25,38 +25,76 @@ export default defineType({
     }),
     defineField({
       ...simpleText({
-        name:"shortDescription",
-        title:"Descrição Curta"
+        name: "shortDescription",
+        title: "Descrição Curta"
       }),
       validation: Rule => Rule.required().error('A descrição curta é obrigatória.'),
     }),
     defineField({
       ...richText({
-        name:"about",
-        title:"Sobre o Evento"
+        name: "about",
+        title: "Sobre o Evento"
       }),
       validation: Rule => Rule.required().error('A descrição é obrigatória.'),
     }),
     defineField({
       name: 'schedule',
-      title: 'Programação',
-      type: 'object',
-      fields: [
-        defineField({ name: 'dataInicio', title: 'Data de Início', type: 'date' }),
-        defineField({ name: 'dataFim', title: 'Data de Fim', type: 'date' }),
-        defineField({ name: 'horaInicio', title: 'Hora de Início', type: 'string' }),
-        defineField({ name: 'horaFim', title: 'Hora de Fim', type: 'string' }),
+      title: 'Programação do Evento',
+      type: 'array',
+      validation: Rule => Rule.required().min(1),
+      of: [
+        defineField({
+          name: 'daySchedule',
+          title: 'Dia da Programação',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'date',
+              title: 'Data',
+              type: 'date',
+              validation: Rule => Rule.required(),
+            }),
+            defineField({
+              name: 'startTime',
+              title: 'Hora de Início',
+              type: 'string',
+              validation: Rule => Rule.required(),
+            }),
+            defineField({
+              name: 'endTime',
+              title: 'Hora de Término',
+              type: 'string',
+              validation: Rule => Rule.required(),
+            }),
+            defineField({
+              name: 'sessions',
+              title: 'Programações do Dia',
+              type: 'array',
+              of: [
+                defineField({
+                  name: 'session',
+                  title: 'Sessão',
+                  type: 'object',
+                  fields: [
+                    { name: 'title', title: 'Título', type: 'string' },
+                    { name: 'description', title: 'Descrição', type: 'text' },
+                    { name: 'time', title: 'Horário', type: 'string' },
+                  ],
+                }),
+              ],
+            }),
+          ],
+        }),
       ],
-      validation: Rule => Rule.required().error('A programação do evento é obrigatória.'),
     }),
     defineField({
       name: 'address',
       title: 'Local (Endereço)',
       type: 'reference',
-          to: [{ type: 'address' }],
+      to: [{ type: 'address' }],
       validation: Rule => Rule.required().error('O local do evento é obrigatório.'),
     }),
-    
+
     defineField({
       name: 'eventColor',
       title: 'Cor do Evento',
@@ -104,4 +142,23 @@ export default defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'bannerDesktop',
+      firstDay: 'schedule.0.date',
+    },
+    prepare(selection) {
+      const { title, media, firstDay } = selection
+      const formattedDate = firstDay
+        ? new Date(firstDay).toLocaleDateString('pt-BR')
+        : 'Sem data definida'
+
+      return {
+        title,
+        media,
+        subtitle: `Início: ${formattedDate}`,
+      }
+    },
+  }
 })
