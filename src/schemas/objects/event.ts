@@ -37,11 +37,11 @@ export default defineType({
     }),
     defineField({
       name: 'backgoround',
-      description:"Imagem que serve de fundo para os cards do evento, resolução minima e aspecto esperado 507x398  ",
+      description:"Imagem que serve de fundo para os cards do evento, resolução minima e aspecto esperado 508x400  ",
       title: 'Imagem de fundo para o evento',
       type: 'image',
       validation: Rule => Rule.required()
-      .custom(validateImageInput({ minWidth:1280, aspectRatio: 1.274 }))
+      .custom(validateImageInput({ minWidth:508, aspectRatio: 1.27 }))
     }),
     defineField({
       ...richText({
