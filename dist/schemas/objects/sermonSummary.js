@@ -44,10 +44,10 @@ export default defineType({
         defineField({
             name: 'background',
             title: 'Imagem de fundo',
-            description: " Imagem de fundo para ser usada nos cards de apresentação",
+            description: " Imagem de fundo para ser usada nos cards de apresentação, resolução minima esperada 700x350",
             type: 'image',
             validation: Rule => Rule
-                .custom(validateImageInput({ minWidth: 1280, aspectRatio: 2.67 }))
+                .custom(validateImageInput({ minWidth: 700, aspectRatio: 2 }))
                 .required(),
         }),
         defineField({
