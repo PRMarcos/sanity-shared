@@ -44,6 +44,16 @@ import { ContactPage } from 'sanity-shared/types'
 
 const data = await sanityClient.fetch<ContactPage>(contactPageQuery)
 ```
+### Queries com variaveis (Next.js)
+
+```ts
+import { findOneeventsByIdQuery } from 'sanity-shared/queries'
+
+const eventId = 'abc123xyz'; 
+
+const event = await sanityClient.fetch(findOneeventsQuery, { id: eventId });
+```
+
 
 ## 📄 Licença
 
