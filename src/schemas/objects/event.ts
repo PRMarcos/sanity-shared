@@ -36,7 +36,7 @@ export default defineType({
       .custom(validateImageInput({ minWidth:375, aspectRatio: 0.9375 }))
     }),
     defineField({
-      name: 'backgoround',
+      name: 'background',
       description:"Imagem que serve de fundo para os cards do evento, resolução minima e aspecto esperado 508x400  ",
       title: 'Imagem de fundo para o evento',
       type: 'image',

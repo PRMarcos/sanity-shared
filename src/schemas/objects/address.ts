@@ -5,7 +5,7 @@ export default defineType({
   title: 'Cadastro de Endereços',
   type: 'document',
   fields: [
-    defineField({ name: 'title', title: 'Descrição', description:"Algo que descreva de quem é o endereço", type: 'string', validation: Rule => Rule.required() }),
+    defineField({ name: 'title', title: 'Descrição', description:"Algo que descreva de quem é o endereço, Esse texto pode ser usado na tela então seja bem descritivo e objetivo", type: 'string', validation: Rule => Rule.required() }),
     defineField({ name: 'street', title: 'Rua', type: 'string', validation: Rule => Rule.required() }),
     defineField({ name: 'number', title: 'Número', type: 'string', validation: Rule => Rule.required() }),
     defineField({ name: 'district', title: 'Bairro', type: 'string', validation: Rule => Rule.required() }),
