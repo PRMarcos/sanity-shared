@@ -1786,7 +1786,7 @@
         },
         "optional": true
       },
-      "backgoround": {
+      "background": {
         "type": "objectAttribute",
         "value": {
           "type": "object",

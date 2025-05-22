@@ -1,5 +1,9 @@
+import { sermonSumaryPageQuery } from "./sermonSumaryPageQuery";
 import { contactPageQuery } from "./contactPageQuery";
+import { eventsPageQuery } from "./eventsPageQuery";
 import { footerQuery } from "./footerQuery";
 import { headerQuery } from "./headerQuery";
 import { homePageQuery } from "./homePageQuery";
-export { contactPageQuery, footerQuery, headerQuery, homePageQuery, };
+import { findOneeventsByIdQuery } from "./findOneeventsByIdQuery";
+import { findOneSermonByIdQuery } from "./findOneSermonByIdQuery";
+export { contactPageQuery, footerQuery, headerQuery, homePageQuery, sermonSumaryPageQuery, eventsPageQuery, findOneeventsByIdQuery, findOneSermonByIdQuery };
