@@ -8,11 +8,24 @@
   ],
   "types": "./dist/types/sanity.types.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/types/sanity.types.d.ts"
-    }
+  ".": {
+    "import": "./dist/index.js",
+    "types": "./dist/index.d.ts"
   },
+  "./types": {
+    "import": "./dist/types/index.js",
+    "types": "./dist/types/index.d.ts"
+  },
+  "./queries": {
+    "import": "./dist/queries/index.js",
+    "types": "./dist/queries/index.d.ts"
+  },
+  "./utils": {
+    "import": "./dist/utils/index.js",
+    "types": "./dist/utils/index.d.ts"
+  }
+}
+,
   "scripts": {
     "build": "sanity schema extract && sanity typegen generate && tsc"
   },
