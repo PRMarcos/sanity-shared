@@ -6,4 +6,7 @@ import { headerQuery } from "./headerQuery";
 import { homePageQuery } from "./homePageQuery";
 import { findOneeventsByIdQuery } from "./findOneeventsByIdQuery";
 import { findOneSermonByIdQuery } from "./findOneSermonByIdQuery";
-export { contactPageQuery, footerQuery, headerQuery, homePageQuery, sermonSumaryPageQuery, eventsPageQuery, findOneeventsByIdQuery, findOneSermonByIdQuery };
+import { homePageSmedsQuery } from "./homePageSmedsQuery";
+import { homePageSermonsQuery } from "./homePageSermonsQuery";
+import { homePageEventsQuery } from "./homePageEventsQuery";
+export { contactPageQuery, footerQuery, headerQuery, homePageQuery, sermonSumaryPageQuery, eventsPageQuery, findOneeventsByIdQuery, findOneSermonByIdQuery, homePageSmedsQuery, homePageSermonsQuery, homePageEventsQuery };
