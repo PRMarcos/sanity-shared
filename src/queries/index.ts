@@ -7,6 +7,9 @@ import { headerQuery } from "./headerQuery";
 import { homePageQuery } from "./homePageQuery";
 import { findOneeventsByIdQuery } from "./findOneeventsByIdQuery";
 import { findOneSermonByIdQuery } from "./findOneSermonByIdQuery";
+import { homePageSmedsQuery } from "./homePageSmedsQuery";
+import { homePageSermonsQuery } from "./homePageSermonsQuery";
+import { homePageEventsQuery } from "./homePageEventsQuery";
 
 export {
         contactPageQuery,
@@ -16,7 +19,10 @@ export {
         sermonSumaryPageQuery,
         eventsPageQuery,
         findOneeventsByIdQuery,
-        findOneSermonByIdQuery
+        findOneSermonByIdQuery,
+        homePageSmedsQuery,
+        homePageSermonsQuery,
+        homePageEventsQuery
     }
 
 
