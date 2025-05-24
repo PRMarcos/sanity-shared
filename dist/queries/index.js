@@ -10,4 +10,5 @@ import { homePageSmedsQuery } from "./homePageSmedsQuery";
 import { homePageSermonsQuery } from "./homePageSermonsQuery";
 import { homePageEventsQuery } from "./homePageEventsQuery";
 import { SmedsPageQuery } from "./SmedsPageQuery";
-export { contactPageQuery, footerQuery, headerQuery, homePageQuery, sermonSumaryPageQuery, eventsPageQuery, findOneeventsByIdQuery, findOneSermonByIdQuery, homePageSmedsQuery, homePageSermonsQuery, homePageEventsQuery, SmedsPageQuery };
+import { getSmedListQuery } from "./getSmedListQuery";
+export { contactPageQuery, footerQuery, headerQuery, homePageQuery, sermonSumaryPageQuery, eventsPageQuery, findOneeventsByIdQuery, findOneSermonByIdQuery, homePageSmedsQuery, homePageSermonsQuery, homePageEventsQuery, SmedsPageQuery, getSmedListQuery };

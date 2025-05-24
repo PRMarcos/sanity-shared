@@ -11,6 +11,7 @@ import { homePageSmedsQuery } from "./homePageSmedsQuery";
 import { homePageSermonsQuery } from "./homePageSermonsQuery";
 import { homePageEventsQuery } from "./homePageEventsQuery";
 import { SmedsPageQuery } from "./SmedsPageQuery";
+import { getSmedListQuery } from "./getSmedListQuery";
 
 export {
         contactPageQuery,
@@ -24,7 +25,8 @@ export {
         homePageSmedsQuery,
         homePageSermonsQuery,
         homePageEventsQuery,
-        SmedsPageQuery
+        SmedsPageQuery,
+        getSmedListQuery
     }
 
 
