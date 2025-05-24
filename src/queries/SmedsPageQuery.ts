@@ -5,6 +5,7 @@ import groq from "groq";
       _id,
       title,
       "banner": banner.asset->url,
-      smedDescription
+      smedDescription,
+      smedButton
     }
   `

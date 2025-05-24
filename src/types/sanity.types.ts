@@ -101,6 +101,10 @@ export type Smed = {
     _type: "block";
     _key: string;
   }>;
+  smedButton?: {
+    contentButton?: string;
+    linktButton?: string;
+  };
 };
 
 export type SermonTag = {
@@ -915,7 +919,7 @@ export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/queries/SmedsPageQuery.ts
 // Variable: SmedsPageQuery
-// Query: *[_type == "smed"] | order(_createdAt desc) {      _id,      title,      "banner": banner.asset->url,      smedDescription    }
+// Query: *[_type == "smed"] | order(_createdAt desc) {      _id,      title,      "banner": banner.asset->url,      smedDescription,      smedButton    }
 export type SmedsPageQueryResult = Array<{
   _id: string;
   title: string | null;
@@ -934,6 +938,10 @@ export type SmedsPageQueryResult = Array<{
     _type: "block";
     _key: string;
   }> | null;
+  smedButton: {
+    contentButton?: string;
+    linktButton?: string;
+  } | null;
 }>;
 
 // Source: ./src/queries/contactPageQuery.ts
@@ -1387,7 +1395,7 @@ export type SermonSumaryPageQueryResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n *[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      \"banner\": banner.asset->url,\n      smedDescription\n    }\n  ": SmedsPageQueryResult;
+    "\n *[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      \"banner\": banner.asset->url,\n      smedDescription,\n      smedButton\n    }\n  ": SmedsPageQueryResult;
     "\n  *[_type == \"contactPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n    description,\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    \"phone\": phone->number,\n    \"email\": email->address,\n    \"DefaultSocial\": DefaultSocial->socialUserName,\n    \"DefaultSocialLink\": DefaultSocial->url,\n    \"whatsApp\": WhatsPhone->number,\n\n    AvailableHours\n  }": ContactPageQueryResult;
     "\n   *[_type == \"event\"]{\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[0] {\n        date,\n        startTime,\n        endTime\n      },\n      \"background\": background.asset->url,\n  }\n": EventsPageQueryResult;
     "\n*[_type == \"sermonSummary\" && _id == $id][0] {\n _id,\n  \"allTags\": *[_type == \"sermonTag\"] {_id,title},\n  title,\n  date,\n  \"slug\": slug.current,\n  \"background\": background.asset->url,\n  \"speaker\": speaker->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    biography,\n    \"image\": photo.asset->url\n  },\n  \"tags\": tags[]->{\n    _id,\n    title\n  },\n  \"videoLink\": videoUrl,\n  content\n}\n": FindOneSermonByIdQueryResult;

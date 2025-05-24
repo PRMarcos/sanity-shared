@@ -28,6 +28,29 @@ export default defineType({
       }),
       validation: Rule => Rule.required().error('A descrição é obrigatória.'),
     }),
+    defineField({
+      title: "CTA SMED",
+      description: "O botão abaixo da descrição do Smed, caso queira remover é só deixar em branco",
+      name: "smedButton",
+      type: "object",
+      fields: [
+        {
+          name: 'contentButton',
+          description: "O titulo do botão",
+          title: 'Título',
+          type: 'string',
+        },
+        {
+          name: 'linktButton',
+          description: "O link do botão, Caminho relativo como /events ou uma URL como https://google.com",
+          title: 'Título',
+          type: 'string',
+          validation: Rule => Rule.required().error('Esse campo é obrigatório.'),
+        },
+      ]
+    }),
+
+
   ],
   preview: {
     select: {

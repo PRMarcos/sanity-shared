@@ -4,6 +4,7 @@ export const SmedsPageQuery = groq `
       _id,
       title,
       "banner": banner.asset->url,
-      smedDescription
+      smedDescription,
+      smedButton
     }
   `;
