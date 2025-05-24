@@ -5,6 +5,7 @@ export const getSmedListQuery = groq `
       _id,
       title,
       "banner": banner.asset->url,
+      "bannerHorizontal": bannerHorizontal.asset->url,
       smedDescription,
       smedButton
     }
