@@ -1,7 +1,7 @@
 
-import { sermonSumaryPageQuery } from "./sermonSumaryPageQuery";
+import { getResumedSermonSumaryListQuery } from "./getResumedSermonSumaryListQuery";
 import { contactPageQuery } from "./contactPageQuery";  
-import { eventsPageQuery } from "./eventsPageQuery";
+import { getResumedEventListQuery } from "./getResumedEventListQuery";
 import { footerQuery } from "./footerQuery";    
 import { headerQuery } from "./headerQuery";  
 import { homePageQuery } from "./homePageQuery";
@@ -12,21 +12,23 @@ import { homePageSermonsQuery } from "./homePageSermonsQuery";
 import { homePageEventsQuery } from "./homePageEventsQuery";
 import { SmedsPageQuery } from "./SmedsPageQuery";
 import { getSmedListQuery } from "./getSmedListQuery";
+import { getAllTagsQuery } from "./getAllTagsQuery";
 
 export {
         contactPageQuery,
         footerQuery,
         headerQuery,
         homePageQuery,
-        sermonSumaryPageQuery,
-        eventsPageQuery,
+        getResumedSermonSumaryListQuery,
+        getResumedEventListQuery,
         findOneeventsByIdQuery,
         findOneSermonByIdQuery,
         homePageSmedsQuery,
         homePageSermonsQuery,
         homePageEventsQuery,
         SmedsPageQuery,
-        getSmedListQuery
+        getSmedListQuery,
+        getAllTagsQuery
     }
 
 

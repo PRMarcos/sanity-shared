@@ -1,7 +1,5 @@
-import groq from "groq"
-
-  
-  export const eventsPageQuery = groq`
+import groq from "groq";
+export const getResumedEventListQuery = groq `
    *[_type == "event"]{
     _id,  
     title,
@@ -15,4 +13,3 @@ import groq from "groq"
       "background": background.asset->url,
   }
 `;
-

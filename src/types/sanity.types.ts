@@ -1052,35 +1052,6 @@ export type ContactPageQueryResult = {
   AvailableHours: string | null;
 } | null;
 
-// Source: ./src/queries/eventsPageQuery.ts
-// Variable: eventsPageQuery
-// Query: *[_type == "event"]{    _id,      title,      shortDescription,      "address":address->title,      schedule[0] {        date,        startTime,        endTime      },      "background": background.asset->url,  }
-export type EventsPageQueryResult = Array<{
-  _id: string;
-  title: string | null;
-  shortDescription: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: null;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }> | null;
-  address: string | null;
-  schedule: {
-    date: string | null;
-    startTime: string | null;
-    endTime: string | null;
-  } | null;
-  background: string | null;
-}>;
-
 // Source: ./src/queries/findOneSermonByIdQuery.ts
 // Variable: findOneSermonByIdQuery
 // Query: *[_type == "sermonSummary" && _id == $id][0] { _id,  "allTags": *[_type == "sermonTag"] {_id,title},  title,  date,  "slug": slug.current,  "background": background.asset->url,  "speaker": speaker->{    name,    birthDate,    title,    titleAbbreviation,    biography,    "image": photo.asset->url  },  "tags": tags[]->{    _id,    title  },  "videoLink": videoUrl,  content}
@@ -1281,6 +1252,63 @@ export type FooterQueryResult = {
   mapEmbedUrl: string | null;
 } | null;
 
+// Source: ./src/queries/getAllTagsQuery.ts
+// Variable: getAllTagsQuery
+// Query: *[_type == "sermonTag"] {  _id,  title  }
+export type GetAllTagsQueryResult = Array<{
+  _id: string;
+  title: string | null;
+}>;
+
+// Source: ./src/queries/getResumedEventListQuery.ts
+// Variable: getResumedEventListQuery
+// Query: *[_type == "event"]{    _id,      title,      shortDescription,      "address":address->title,      schedule[0] {        date,        startTime,        endTime      },      "background": background.asset->url,  }
+export type GetResumedEventListQueryResult = Array<{
+  _id: string;
+  title: string | null;
+  shortDescription: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  address: string | null;
+  schedule: {
+    date: string | null;
+    startTime: string | null;
+    endTime: string | null;
+  } | null;
+  background: string | null;
+}>;
+
+// Source: ./src/queries/getResumedSermonSumaryListQuery.ts
+// Variable: getResumedSermonSumaryListQuery
+// Query: *[_type == "sermonSummary"] {   _id,      title,   date,  tags[]->{_id,title},   "slug": slug.current,   "background": background.asset->url,   speaker->{ name, titleAbbreviation, "photo":photo.asset->url},    }
+export type GetResumedSermonSumaryListQueryResult = Array<{
+  _id: string;
+  title: string | null;
+  date: string | null;
+  tags: Array<{
+    _id: string;
+    title: string | null;
+  }> | null;
+  slug: string | null;
+  background: string | null;
+  speaker: {
+    name: string | null;
+    titleAbbreviation: string | null;
+    photo: string | null;
+  } | null;
+}>;
+
 // Source: ./src/queries/getSmedListQuery.ts
 // Variable: getSmedListQuery
 // Query: *[_type == "smed"] | order(_createdAt desc) {      _id,      title,      "banner": banner.asset->url,      "bannerHorizontal": bannerHorizontal.asset->url,      smedDescription,      smedButton    }
@@ -1447,46 +1475,23 @@ export type HomePageSmedsQueryResult = Array<{
   banner: string | null;
 }>;
 
-// Source: ./src/queries/sermonSumaryPageQuery.ts
-// Variable: sermonSumaryPageQuery
-// Query: *[_type == "sermonSummary"] {   _id,      title,   date,  tags[]->{_id,title},   "slug": slug.current,   "background": background.asset->url,   speaker->{ name, titleAbbreviation, "photo":photo.asset->url},   "allTags": *[_type == "sermonTag"] {_id,title}    }
-export type SermonSumaryPageQueryResult = Array<{
-  _id: string;
-  title: string | null;
-  date: string | null;
-  tags: Array<{
-    _id: string;
-    title: string | null;
-  }> | null;
-  slug: string | null;
-  background: string | null;
-  speaker: {
-    name: string | null;
-    titleAbbreviation: string | null;
-    photo: string | null;
-  } | null;
-  allTags: Array<{
-    _id: string;
-    title: string | null;
-  }>;
-}>;
-
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n \n *[_type == \"ourSmedsPage\"][0]{  \n  title,\n  \"bannerImage\": bannerImage.asset->url,\n  description,\n  conclusion,\n}\n\n  ": SmedsPageQueryResult;
     "\n  *[_type == \"contactPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n    description,\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    \"phone\": phone->number,\n    \"email\": email->address,\n    \"DefaultSocial\": DefaultSocial->socialUserName,\n    \"DefaultSocialLink\": DefaultSocial->url,\n    \"whatsApp\": WhatsPhone->number,\n\n    AvailableHours\n  }": ContactPageQueryResult;
-    "\n   *[_type == \"event\"]{\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[0] {\n        date,\n        startTime,\n        endTime\n      },\n      \"background\": background.asset->url,\n  }\n": EventsPageQueryResult;
     "\n*[_type == \"sermonSummary\" && _id == $id][0] {\n _id,\n  \"allTags\": *[_type == \"sermonTag\"] {_id,title},\n  title,\n  date,\n  \"slug\": slug.current,\n  \"background\": background.asset->url,\n  \"speaker\": speaker->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    biography,\n    \"image\": photo.asset->url\n  },\n  \"tags\": tags[]->{\n    _id,\n    title\n  },\n  \"videoLink\": videoUrl,\n  content\n}\n": FindOneSermonByIdQueryResult;
     "\n *[_type == \"event\" && _id == $id][0] {\n  title,\n  about,\n  shortDescription,\n  \"address\": address->{\n    title,\n    street,\n    city,\n    state,\n    zip\n  },\n  \"banner\": banner.asset->url,\n  \"bannerMobile\": bannerMobile.asset->url,\n  \"eventColor\": eventColor.hex,\n  organizer {\n    description,\n    \"phone\": phone->{\n      number,\n      name\n    },\n    \"email\": email->{\n      address,\n      name\n    }\n  },\n  \"schedule\": schedule[]{\n    date,\n    startTime,\n    endTime,\n    sessions[]{\n      title,\n      description,\n      time\n    }\n  },\n  \"background\": background.asset->url,\n  \"speakers\": speakers[]->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    bio,\n    \"image\": photo.asset->url\n  },\n  teaser\n}\n": FindOneeventsByIdQueryResult;
     "*[_type == \"footer\"][0]{\n    \"logo\":logo.asset->url,\n    programmingTitle,\n    programmingText,\n    helpTitle,\n    \"helpPhone\": helpPhone->number,\n    locationTitle,\n    socialLinks[]-> {\n      \"_key\":_id,\n      url,\n      \"plataform\":type->title,\n      \"icon\": type->icon.asset->url\n      },\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    mapEmbedUrl,\n  }": FooterQueryResult;
+    "\n  *[_type == \"sermonTag\"] {\n  _id,\n  title\n  }\n    \n": GetAllTagsQueryResult;
+    "\n   *[_type == \"event\"]{\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[0] {\n        date,\n        startTime,\n        endTime\n      },\n      \"background\": background.asset->url,\n  }\n": GetResumedEventListQueryResult;
+    "\n *[_type == \"sermonSummary\"] {\n   _id,   \n   title,\n   date,\n  tags[]->{_id,title},\n   \"slug\": slug.current,\n   \"background\": background.asset->url,\n   speaker->{ name, titleAbbreviation, \"photo\":photo.asset->url},\n    }\n": GetResumedSermonSumaryListQueryResult;
     "\n \n*[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      \"banner\": banner.asset->url,\n      \"bannerHorizontal\": bannerHorizontal.asset->url,\n      smedDescription,\n      smedButton\n    }\n  ": GetSmedListQueryResult;
     "\n  *[_type == \"header\"][0]{\n    items[]{\n      label,\n      link\n    }\n  }\n": HeaderQueryResult;
     "\n*[_type == \"event\" && schedule[0].date >= now()] | order(schedule[0].date asc)[0...3] {\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[] {\n        date,\n        startTime,\n        endTime\n      },\n      \"background\": background.asset->url\n    }\n": HomePageEventsQueryResult;
     "\n *[_type == \"homePage\"][0]{\n    heroHeadline,\n    heroDescription,\n    heroButtonTitle,\n    heroButtonLink,\n    \"heroImage\": heroImage.asset->url,\n    dividerText,\n    titleLive,\n    descriptionLive,\n    youtubeUrl,\n    buttonLiveText,\n    butonLiveLink,\n    \"liveBannerImage\": liveBannerImage.asset->url,\n  }\n": HomePageQueryResult;
     "\n*[_type == \"sermonSummary\"] | order(date desc)[0...5] {\n      _id,\n      title,\n      date,\n      \"slug\": slug,\n      \"background\": background.asset->url,\n      speaker->{ name, titleAbbreviation, \"photo\":photo.asset->url}\n      \n    }\n  ": HomePageSermonsQueryResult;
     "\n *[_type == \"smed\"] | order(_createdAt desc) {\n      title,\n      \"banner\": banner.asset->url\n    }\n  ": HomePageSmedsQueryResult;
-    "\n *[_type == \"sermonSummary\"] {\n   _id,   \n   title,\n   date,\n  tags[]->{_id,title},\n   \"slug\": slug.current,\n   \"background\": background.asset->url,\n   speaker->{ name, titleAbbreviation, \"photo\":photo.asset->url},\n   \"allTags\": *[_type == \"sermonTag\"] {_id,title}\n    }\n": SermonSumaryPageQueryResult;
   }
 }
