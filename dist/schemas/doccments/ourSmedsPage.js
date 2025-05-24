@@ -27,13 +27,6 @@ export default defineType({
             validation: Rule => Rule.required().error('Esse é um campo obrigatório.'),
         }),
         defineField({
-            name: "smedlist",
-            title: "Lista dos smeds",
-            type: "array",
-            of: [{ type: 'reference', to: [{ type: 'smed' }] }],
-            validation: Rule => Rule.required().min(1).error('Adicione ao menos um item.'),
-        }),
-        defineField({
             ...richText({
                 name: 'conclusion',
                 title: 'Conclusão da Pagina SMEDs'

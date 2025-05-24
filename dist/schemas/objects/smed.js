@@ -21,6 +21,15 @@ export default defineType({
                 .required()
         }),
         defineField({
+            name: 'bannerHorizontal',
+            title: 'Imagem Representativa do SMED',
+            description: "Imagem para ser usada na página de apresentação do smed, use uma imagem versatil pois a interface pode alterar o formato do frame",
+            type: 'image',
+            validation: Rule => Rule
+                .custom(validateImageInput({ minHeight: 500 }))
+                .required()
+        }),
+        defineField({
             ...simpleText({
                 name: "smedDescription",
                 title: "Descrição do Semd"

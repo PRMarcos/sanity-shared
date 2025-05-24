@@ -1,10 +1,11 @@
 import groq from "groq";
 export const SmedsPageQuery = groq `
- *[_type == "smed"] | order(_createdAt desc) {
-      _id,
-      title,
-      "banner": banner.asset->url,
-      smedDescription,
-      smedButton
-    }
+ 
+ *[_type == "ourSmedsPage"][0]{  
+  title,
+  "bannerImage": bannerImage.asset->url,
+  description,
+  conclusion,
+}
+
   `;
