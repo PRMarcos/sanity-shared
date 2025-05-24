@@ -14,22 +14,7 @@ export declare function simpleText({ title, name }: {
                 title: string;
                 value: string;
             }[];
-            annotations: {
-                name: string;
-                type: string;
-                title: string;
-                fields: ({
-                    name: string;
-                    type: string;
-                    title: string;
-                    initialValue?: undefined;
-                } | {
-                    name: string;
-                    type: string;
-                    title: string;
-                    initialValue: boolean;
-                })[];
-            }[];
+            annotations: never[];
         };
     }[];
 };

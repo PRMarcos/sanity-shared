@@ -96,12 +96,7 @@ export type Smed = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      blank?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
+    markDefs?: null;
     level?: number;
     _type: "block";
     _key: string;
@@ -251,12 +246,7 @@ export type Event = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      blank?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
+    markDefs?: null;
     level?: number;
     _type: "block";
     _key: string;
@@ -531,12 +521,7 @@ export type HomePage = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      blank?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
+    markDefs?: null;
     level?: number;
     _type: "block";
     _key: string;
@@ -583,12 +568,7 @@ export type HomePage = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      blank?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
+    markDefs?: null;
     level?: number;
     _type: "block";
     _key: string;
@@ -603,12 +583,7 @@ export type HomePage = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      blank?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
+    markDefs?: null;
     level?: number;
     _type: "block";
     _key: string;
@@ -1008,12 +983,7 @@ export type EventsPageQueryResult = Array<{
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      blank?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
+    markDefs?: null;
     level?: number;
     _type: "block";
     _key: string;
@@ -1135,12 +1105,7 @@ export type FindOneeventsByIdQueryResult = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      blank?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
+    markDefs?: null;
     level?: number;
     _type: "block";
     _key: string;
@@ -1257,12 +1222,7 @@ export type HomePageEventsQueryResult = Array<{
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      blank?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
+    markDefs?: null;
     level?: number;
     _type: "block";
     _key: string;
@@ -1289,12 +1249,7 @@ export type HomePageQueryResult = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      blank?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
+    markDefs?: null;
     level?: number;
     _type: "block";
     _key: string;
@@ -1330,12 +1285,7 @@ export type HomePageQueryResult = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      blank?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
+    markDefs?: null;
     level?: number;
     _type: "block";
     _key: string;
@@ -1350,12 +1300,7 @@ export type HomePageQueryResult = {
     }>;
     style?: "normal";
     listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      blank?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
+    markDefs?: null;
     level?: number;
     _type: "block";
     _key: string;
@@ -1368,8 +1313,9 @@ export type HomePageQueryResult = {
 
 // Source: ./src/queries/homePageSermonsQuery.ts
 // Variable: homePageSermonsQuery
-// Query: *[_type == "sermonSummary"] | order(date desc)[0...5] {      title,      date,      "slug": slug,      "background": background.asset->url,      speaker->{ name, titleAbbreviation, "photo":photo.asset->url}          }
+// Query: *[_type == "sermonSummary"] | order(date desc)[0...5] {      _id,      title,      date,      "slug": slug,      "background": background.asset->url,      speaker->{ name, titleAbbreviation, "photo":photo.asset->url}          }
 export type HomePageSermonsQueryResult = Array<{
+  _id: string;
   title: string | null;
   date: string | null;
   slug: Slug | null;
@@ -1425,7 +1371,7 @@ declare module "@sanity/client" {
     "\n  *[_type == \"header\"][0]{\n    items[]{\n      label,\n      link\n    }\n  }\n": HeaderQueryResult;
     "\n*[_type == \"event\" && schedule[0].date >= now()] | order(schedule[0].date asc)[0...3] {\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[0] {\n        date,\n        startTime,\n        endTime\n      },\n      \"background\": background.asset->url\n    }\n": HomePageEventsQueryResult;
     "\n *[_type == \"homePage\"][0]{\n    heroHeadline,\n    heroDescription,\n    heroButtonTitle,\n    heroButtonLink,\n    \"heroImage\": heroImage.asset->url,\n    dividerText,\n    titleLive,\n    descriptionLive,\n    youtubeUrl,\n    buttonLiveText,\n    butonLiveLink,\n    \"liveBannerImage\": liveBannerImage.asset->url,\n  }\n": HomePageQueryResult;
-    "\n*[_type == \"sermonSummary\"] | order(date desc)[0...5] {\n      title,\n      date,\n      \"slug\": slug,\n      \"background\": background.asset->url,\n      speaker->{ name, titleAbbreviation, \"photo\":photo.asset->url}\n      \n    }\n  ": HomePageSermonsQueryResult;
+    "\n*[_type == \"sermonSummary\"] | order(date desc)[0...5] {\n      _id,\n      title,\n      date,\n      \"slug\": slug,\n      \"background\": background.asset->url,\n      speaker->{ name, titleAbbreviation, \"photo\":photo.asset->url}\n      \n    }\n  ": HomePageSermonsQueryResult;
     "\n *[_type == \"smed\"] | order(_createdAt desc) {\n      title,\n      \"banner\": banner.asset->url\n    }\n  ": HomePageSmedsQueryResult;
     "\n *[_type == \"sermonSummary\"] {\n   _id,   \n   title,\n   date,\n  tags[]->{_id,title},\n   \"slug\": slug.current,\n   \"background\": background.asset->url,\n   speaker->{ name, titleAbbreviation, \"photo\":photo.asset->url},\n   \"allTags\": *[_type == \"sermonTag\"] {_id,title}\n    }\n": SermonSumaryPageQueryResult;
   }
