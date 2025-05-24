@@ -6,7 +6,7 @@ import groq from "groq";
     title,
       shortDescription,
       "address":address->title,
-      schedule[0] {
+      schedule[] {
         date,
         startTime,
         endTime

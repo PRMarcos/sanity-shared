@@ -61,6 +61,13 @@ export default defineType({
                     type: 'object',
                     fields: [
                         defineField({
+                            name: 'title',
+                            title: 'Título do dia',
+                            description: "Pode ser o nome do dia, ou o titulo da programação do dia. ex.: Sexta-feira ou Dia Livre",
+                            type: 'string',
+                            validation: Rule => Rule.required(),
+                        }),
+                        defineField({
                             name: 'date',
                             title: 'Data',
                             type: 'date',

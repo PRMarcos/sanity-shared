@@ -5,7 +5,7 @@ export const homePageEventsQuery = groq `
     title,
       shortDescription,
       "address":address->title,
-      schedule[0] {
+      schedule[] {
         date,
         startTime,
         endTime
