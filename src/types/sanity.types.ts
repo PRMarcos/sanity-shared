@@ -913,6 +913,29 @@ export type HslaColor = {
 
 export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Smed | SermonTag | SermonSummary | Slug | Person | Event | Header | AboutPage | OurSmedsPage | HomePage | Footer | ContactPage | PhoneEntry | EmailEntry | SocialLink | SupportedSocialMidia | Address | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Code | Color | RgbaColor | HsvaColor | HslaColor;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./src/queries/SmedsPageQuery.ts
+// Variable: SmedsPageQuery
+// Query: *[_type == "smed"] | order(_createdAt desc) {      _id,      title,      "banner": banner.asset->url,      smedDescription    }
+export type SmedsPageQueryResult = Array<{
+  _id: string;
+  title: string | null;
+  banner: string | null;
+  smedDescription: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+}>;
+
 // Source: ./src/queries/contactPageQuery.ts
 // Variable: contactPageQuery
 // Query: *[_type == "contactPage"][0]{    _id,    title,    "bannerImage": bannerImage.asset->url,    description,    address-> {      street,      number,      district,      city,      state,      zip    },    "phone": phone->number,    "email": email->address,    "DefaultSocial": DefaultSocial->socialUserName,    "DefaultSocialLink": DefaultSocial->url,    "whatsApp": WhatsPhone->number,    AvailableHours  }
@@ -1364,6 +1387,7 @@ export type SermonSumaryPageQueryResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    "\n *[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      \"banner\": banner.asset->url,\n      smedDescription\n    }\n  ": SmedsPageQueryResult;
     "\n  *[_type == \"contactPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n    description,\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    \"phone\": phone->number,\n    \"email\": email->address,\n    \"DefaultSocial\": DefaultSocial->socialUserName,\n    \"DefaultSocialLink\": DefaultSocial->url,\n    \"whatsApp\": WhatsPhone->number,\n\n    AvailableHours\n  }": ContactPageQueryResult;
     "\n   *[_type == \"event\"]{\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[0] {\n        date,\n        startTime,\n        endTime\n      },\n      \"background\": background.asset->url,\n  }\n": EventsPageQueryResult;
     "\n*[_type == \"sermonSummary\" && _id == $id][0] {\n _id,\n  \"allTags\": *[_type == \"sermonTag\"] {_id,title},\n  title,\n  date,\n  \"slug\": slug.current,\n  \"background\": background.asset->url,\n  \"speaker\": speaker->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    biography,\n    \"image\": photo.asset->url\n  },\n  \"tags\": tags[]->{\n    _id,\n    title\n  },\n  \"videoLink\": videoUrl,\n  content\n}\n": FindOneSermonByIdQueryResult;

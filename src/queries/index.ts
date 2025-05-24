@@ -10,6 +10,7 @@ import { findOneSermonByIdQuery } from "./findOneSermonByIdQuery";
 import { homePageSmedsQuery } from "./homePageSmedsQuery";
 import { homePageSermonsQuery } from "./homePageSermonsQuery";
 import { homePageEventsQuery } from "./homePageEventsQuery";
+import { SmedsPageQuery } from "./SmedsPageQuery";
 
 export {
         contactPageQuery,
@@ -22,7 +23,8 @@ export {
         findOneSermonByIdQuery,
         homePageSmedsQuery,
         homePageSermonsQuery,
-        homePageEventsQuery
+        homePageEventsQuery,
+        SmedsPageQuery
     }
 
 
