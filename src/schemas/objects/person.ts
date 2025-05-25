@@ -3,7 +3,7 @@ import { validateImageInput } from '../../utils'
 
 export default defineType({
   name: 'person',
-  title: 'Pessoa',
+  title: 'Cadastro de Pessoas',
   type: 'document',
   fields: [
     defineField({

@@ -3,7 +3,7 @@ import { slugify } from '../../utils' // vamos criar esse util abaixo
 
 export default defineType({
   name: 'sermonTag',
-  title: 'Tag de Sermão',
+  title: 'Cadastro de Tag de Sermão',
   type: 'document',
   fields: [
     defineField({
