@@ -4,7 +4,7 @@ export const homePageSermonsQuery = groq `
       _id,
       title,
       date,
-      "slug": slug,
+      "slug": slug.current,
       "background": background.asset->url,
       speaker->{ name, titleAbbreviation, "photo":photo.asset->url}
       
