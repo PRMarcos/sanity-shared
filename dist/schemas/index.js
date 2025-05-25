@@ -14,6 +14,8 @@ import phone from './objects/phone';
 import sermonTag from './objects/sermonTag';
 import person from './objects/person';
 import smed from './objects/smed';
+import eventsPage from './doccments/eventsPage';
+import sermonSummaryPage from './doccments/sermonSummaryPage';
 // outros...
 export const schemaTypes = [
     contactPage,
@@ -31,6 +33,8 @@ export const schemaTypes = [
     phone,
     sermonTag,
     person,
-    smed
+    smed,
+    eventsPage,
+    sermonSummaryPage
     // outros...
 ];

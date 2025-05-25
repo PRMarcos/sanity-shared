@@ -95,4 +95,14 @@ export declare const schemaTypes: (({
         title: string;
         media: string;
     }, Record<"title" | "media", any>> | undefined;
+}) | ({
+    type: "document";
+    name: "eventsPage";
+} & Omit<import("sanity").DocumentDefinition, "preview"> & {
+    preview?: import("sanity").PreviewConfig<Record<string, string>, Record<never, any>> | undefined;
+}) | ({
+    type: "document";
+    name: "sermonSumaryPage";
+} & Omit<import("sanity").DocumentDefinition, "preview"> & {
+    preview?: import("sanity").PreviewConfig<Record<string, string>, Record<never, any>> | undefined;
 }))[];
