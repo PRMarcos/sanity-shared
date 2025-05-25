@@ -15,6 +15,8 @@ import { getSmedListQuery } from "./getSmedListQuery";
 import { getAllTagsQuery } from "./getAllTagsQuery";
 import { eventPageQuery } from "./eventPageQuery";
 import { sermonSummaryPageQuery } from "./sermonSummaryPageQuery";
+import { aboutPageQuery } from "./aboutPageQuery";
+import { getPersonListQuery } from "./getPersonListQuery";
 
 export {
         contactPageQuery,
@@ -32,7 +34,9 @@ export {
         getSmedListQuery,
         getAllTagsQuery,
         eventPageQuery,
-        sermonSummaryPageQuery
+        sermonSummaryPageQuery,
+        aboutPageQuery,
+        getPersonListQuery
     }
 
 

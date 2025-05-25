@@ -19,6 +19,16 @@ export default defineType({
                 .custom(validateImageInput({ minWidth: 1280, aspectRatio: 2.67 }))
                 .required()
         }),
+        defineField({
+            name: 'leadership',
+            title: 'Nossa Liderança',
+            description: "Selecionar os pastores presidentes",
+            type: 'array',
+            of: [{ type: 'reference', to: [{ type: 'person' }] }],
+            validation: Rule => Rule.required()
+                .min(1)
+                .error('Adicione pelo menos uma uma Pessoa.'),
+        }),
     ],
     preview: {
         prepare() {

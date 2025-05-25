@@ -471,6 +471,13 @@ export type AboutPage = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  leadership?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "person";
+  }>;
 };
 
 export type OurSmedsPage = {
@@ -1040,6 +1047,41 @@ export type SmedsPageQueryResult = {
   }> | null;
 } | null;
 
+// Source: ./src/queries/aboutPageQuery.ts
+// Variable: aboutPageQuery
+// Query: *[_type == "aboutPage"][0] {    _id,    title,    "bannerImage": bannerImage.asset->url,    leadership[]->{      _id,      name,      birthDate,      title,      titleAbbreviation,      bio,      "photo": photo.asset->url    }  }
+export type AboutPageQueryResult = {
+  _id: string;
+  title: string | null;
+  bannerImage: string | null;
+  leadership: Array<{
+    _id: string;
+    name: string | null;
+    birthDate: string | null;
+    title: string | null;
+    titleAbbreviation: string | null;
+    bio: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }> | null;
+    photo: string | null;
+  }> | null;
+} | null;
+
 // Source: ./src/queries/contactPageQuery.ts
 // Variable: contactPageQuery
 // Query: *[_type == "contactPage"][0]{    _id,    title,    "bannerImage": bannerImage.asset->url,    description,    address-> {      street,      number,      district,      city,      state,      zip    },    "phone": phone->number,    "email": email->address,    "DefaultSocial": DefaultSocial->socialUserName,    "DefaultSocialLink": DefaultSocial->url,    "whatsApp": WhatsPhone->number,    AvailableHours  }
@@ -1315,6 +1357,36 @@ export type GetAllTagsQueryResult = Array<{
   slug: string | null;
 }>;
 
+// Source: ./src/queries/getPersonListQuery.ts
+// Variable: getPersonListQuery
+// Query: *[_type == "person"]{    _id,    name,    birthDate,    title,    titleAbbreviation,    bio,    "photo": photo.asset->url  }
+export type GetPersonListQueryResult = Array<{
+  _id: string;
+  name: string | null;
+  birthDate: string | null;
+  title: string | null;
+  titleAbbreviation: string | null;
+  bio: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  photo: string | null;
+}>;
+
 // Source: ./src/queries/getResumedEventListQuery.ts
 // Variable: getResumedEventListQuery
 // Query: *[_type == "event"]{    _id,      title,      shortDescription,      "address":address->title,      schedule[] {        date,        startTime,        endTime      },      "background": background.asset->url,  }
@@ -1544,12 +1616,14 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n \n *[_type == \"ourSmedsPage\"][0]{  \n  title,\n  \"bannerImage\": bannerImage.asset->url,\n  description,\n  conclusion,\n}\n\n  ": SmedsPageQueryResult;
+    "\n  *[_type == \"aboutPage\"][0] {\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n    leadership[]->{\n      _id,\n      name,\n      birthDate,\n      title,\n      titleAbbreviation,\n      bio,\n      \"photo\": photo.asset->url\n    }\n  }\n": AboutPageQueryResult;
     "\n  *[_type == \"contactPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n    description,\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    \"phone\": phone->number,\n    \"email\": email->address,\n    \"DefaultSocial\": DefaultSocial->socialUserName,\n    \"DefaultSocialLink\": DefaultSocial->url,\n    \"whatsApp\": WhatsPhone->number,\n\n    AvailableHours\n  }": ContactPageQueryResult;
     "\n  *[_type == \"eventsPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n  }": EventPageQueryResult;
     "\n *[_type == \"event\" && _id == $id][0] {\n  title,\n  about,\n  shortDescription,\n  \"address\": address->{\n    title,\n    street,\n    city,\n    state,\n    zip\n  },\n  \"banner\": banner.asset->url,\n  \"bannerMobile\": bannerMobile.asset->url,\n  \"eventColor\": eventColor.hex,\n  organizer {\n    description,\n    \"phone\": phone->{\n      number,\n      name\n    },\n    \"email\": email->{\n      address,\n      name\n    }\n  },\n  \"schedule\": schedule[]{\n    date,\n    startTime,\n    endTime,\n    sessions[]{\n      title,\n      description,\n      starTime,\n      endTime\n    }\n  },\n  \"background\": background.asset->url,\n  \"speakers\": speakers[]->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    bio,\n    \"image\": photo.asset->url\n  },\n  teaser\n}\n": FindOneEventByIdQueryResult;
     "\n*[_type == \"sermonSummary\" && _id == $id][0] {\n _id,\n  \"allTags\": *[_type == \"sermonTag\"] {_id,title},\n  title,\n  date,\n  \"slug\": slug.current,\n  \"background\": background.asset->url,\n  \"speaker\": speaker->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    biography,\n    \"image\": photo.asset->url\n  },\n  \"tags\": tags[]->{\n    _id,\n    title\n  },\n  \"videoLink\": videoUrl,\n  content\n}\n": FindOneSermonByIdQueryResult;
     "*[_type == \"footer\"][0]{\n    \"logo\":logo.asset->url,\n    programmingTitle,\n    programmingText,\n    helpTitle,\n    \"helpPhone\": helpPhone->number,\n    locationTitle,\n    socialLinks[]-> {\n      \"_key\":_id,\n      url,\n      \"plataform\":type->title,\n      \"icon\": type->icon.asset->url\n      },\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    mapEmbedUrl,\n  }": FooterQueryResult;
     "\n  *[_type == \"sermonTag\"] {\n  _id,\n  title,\n  \"slug\": slug.current\n  }\n    \n": GetAllTagsQueryResult;
+    "\n  *[_type == \"person\"]{\n    _id,\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    bio,\n    \"photo\": photo.asset->url\n  }\n": GetPersonListQueryResult;
     "\n   *[_type == \"event\"]{\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[] {\n        date,\n        startTime,\n        endTime\n      },\n      \"background\": background.asset->url,\n  }\n": GetResumedEventListQueryResult;
     "\n *[_type == \"sermonSummary\"] {\n   _id,   \n   title,\n   date,\n  tags[]->{_id,title},\n   \"slug\": slug.current,\n   \"background\": background.asset->url,\n   speaker->{ name, titleAbbreviation, \"photo\":photo.asset->url},\n    }\n": GetResumedSermonSumaryListQueryResult;
     "\n \n*[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      \"banner\": banner.asset->url,\n      \"bannerHorizontal\": bannerHorizontal.asset->url,\n      smedDescription,\n      smedButton\n    }\n  ": GetSmedListQueryResult;
