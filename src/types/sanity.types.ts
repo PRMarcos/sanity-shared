@@ -168,6 +168,7 @@ export type SermonTag = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  slug?: Slug;
 };
 
 export type SermonSummary = {

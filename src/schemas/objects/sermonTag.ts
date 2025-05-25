@@ -1,4 +1,5 @@
 import { defineType, defineField } from 'sanity'
+import { slugify } from '../../utils' // vamos criar esse util abaixo
 
 export default defineType({
   name: 'sermonTag',
@@ -11,8 +12,19 @@ export default defineType({
       type: 'string',
       validation: Rule => Rule.required().error('O título é obrigatório.'),
     }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        slugify: slugify,
+      },
+      validation: Rule => Rule.required().error('O slug é obrigatório.'),
+    }),
   ],
   preview: {
     select: { title: 'title' },
   },
 })
+
