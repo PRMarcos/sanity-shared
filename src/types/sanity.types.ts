@@ -1315,7 +1315,7 @@ export type GetAllTagsQueryResult = Array<{
 
 // Source: ./src/queries/getResumedEventListQuery.ts
 // Variable: getResumedEventListQuery
-// Query: *[_type == "event"]{    _id,      title,      shortDescription,      "address":address->title,      schedule[0] {        date,        startTime,        endTime      },      "background": background.asset->url,  }
+// Query: *[_type == "event"]{    _id,      title,      shortDescription,      "address":address->title,      schedule[] {        date,        startTime,        endTime      },      "background": background.asset->url,  }
 export type GetResumedEventListQueryResult = Array<{
   _id: string;
   title: string | null;
@@ -1334,11 +1334,11 @@ export type GetResumedEventListQueryResult = Array<{
     _key: string;
   }> | null;
   address: string | null;
-  schedule: {
+  schedule: Array<{
     date: string | null;
     startTime: string | null;
     endTime: string | null;
-  } | null;
+  }> | null;
   background: string | null;
 }>;
 
@@ -1548,7 +1548,7 @@ declare module "@sanity/client" {
     "\n *[_type == \"event\" && _id == $id][0] {\n  title,\n  about,\n  shortDescription,\n  \"address\": address->{\n    title,\n    street,\n    city,\n    state,\n    zip\n  },\n  \"banner\": banner.asset->url,\n  \"bannerMobile\": bannerMobile.asset->url,\n  \"eventColor\": eventColor.hex,\n  organizer {\n    description,\n    \"phone\": phone->{\n      number,\n      name\n    },\n    \"email\": email->{\n      address,\n      name\n    }\n  },\n  \"schedule\": schedule[]{\n    date,\n    startTime,\n    endTime,\n    sessions[]{\n      title,\n      description,\n      time\n    }\n  },\n  \"background\": background.asset->url,\n  \"speakers\": speakers[]->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    bio,\n    \"image\": photo.asset->url\n  },\n  teaser\n}\n": FindOneeventsByIdQueryResult;
     "*[_type == \"footer\"][0]{\n    \"logo\":logo.asset->url,\n    programmingTitle,\n    programmingText,\n    helpTitle,\n    \"helpPhone\": helpPhone->number,\n    locationTitle,\n    socialLinks[]-> {\n      \"_key\":_id,\n      url,\n      \"plataform\":type->title,\n      \"icon\": type->icon.asset->url\n      },\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    mapEmbedUrl,\n  }": FooterQueryResult;
     "\n  *[_type == \"sermonTag\"] {\n  _id,\n  title,\n  \"slug\": slug.current\n  }\n    \n": GetAllTagsQueryResult;
-    "\n   *[_type == \"event\"]{\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[0] {\n        date,\n        startTime,\n        endTime\n      },\n      \"background\": background.asset->url,\n  }\n": GetResumedEventListQueryResult;
+    "\n   *[_type == \"event\"]{\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[] {\n        date,\n        startTime,\n        endTime\n      },\n      \"background\": background.asset->url,\n  }\n": GetResumedEventListQueryResult;
     "\n *[_type == \"sermonSummary\"] {\n   _id,   \n   title,\n   date,\n  tags[]->{_id,title},\n   \"slug\": slug.current,\n   \"background\": background.asset->url,\n   speaker->{ name, titleAbbreviation, \"photo\":photo.asset->url},\n    }\n": GetResumedSermonSumaryListQueryResult;
     "\n \n*[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      \"banner\": banner.asset->url,\n      \"bannerHorizontal\": bannerHorizontal.asset->url,\n      smedDescription,\n      smedButton\n    }\n  ": GetSmedListQueryResult;
     "\n  *[_type == \"header\"][0]{\n    items[]{\n      label,\n      link\n    }\n  }\n": HeaderQueryResult;
