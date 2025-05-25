@@ -1051,6 +1051,11 @@ export type ContactPageQueryResult = {
     whatsApp: string | null;
     AvailableHours: string | null;
 } | null;
+export type EventPageQueryResult = {
+    _id: string;
+    title: string | null;
+    bannerImage: string | null;
+} | null;
 export type FindOneSermonByIdQueryResult = {
     _id: string;
     allTags: Array<{
@@ -1427,11 +1432,17 @@ export type HomePageSmedsQueryResult = Array<{
     title: string | null;
     banner: string | null;
 }>;
+export type SermonSummaryPageQueryResult = {
+    _id: string;
+    title: string | null;
+    bannerImage: string | null;
+} | null;
 import "@sanity/client";
 declare module "@sanity/client" {
     interface SanityQueries {
         "\n \n *[_type == \"ourSmedsPage\"][0]{  \n  title,\n  \"bannerImage\": bannerImage.asset->url,\n  description,\n  conclusion,\n}\n\n  ": SmedsPageQueryResult;
         "\n  *[_type == \"contactPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n    description,\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    \"phone\": phone->number,\n    \"email\": email->address,\n    \"DefaultSocial\": DefaultSocial->socialUserName,\n    \"DefaultSocialLink\": DefaultSocial->url,\n    \"whatsApp\": WhatsPhone->number,\n\n    AvailableHours\n  }": ContactPageQueryResult;
+        "\n  *[_type == \"eventsPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n  }": EventPageQueryResult;
         "\n*[_type == \"sermonSummary\" && _id == $id][0] {\n _id,\n  \"allTags\": *[_type == \"sermonTag\"] {_id,title},\n  title,\n  date,\n  \"slug\": slug.current,\n  \"background\": background.asset->url,\n  \"speaker\": speaker->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    biography,\n    \"image\": photo.asset->url\n  },\n  \"tags\": tags[]->{\n    _id,\n    title\n  },\n  \"videoLink\": videoUrl,\n  content\n}\n": FindOneSermonByIdQueryResult;
         "\n *[_type == \"event\" && _id == $id][0] {\n  title,\n  about,\n  shortDescription,\n  \"address\": address->{\n    title,\n    street,\n    city,\n    state,\n    zip\n  },\n  \"banner\": banner.asset->url,\n  \"bannerMobile\": bannerMobile.asset->url,\n  \"eventColor\": eventColor.hex,\n  organizer {\n    description,\n    \"phone\": phone->{\n      number,\n      name\n    },\n    \"email\": email->{\n      address,\n      name\n    }\n  },\n  \"schedule\": schedule[]{\n    date,\n    startTime,\n    endTime,\n    sessions[]{\n      title,\n      description,\n      time\n    }\n  },\n  \"background\": background.asset->url,\n  \"speakers\": speakers[]->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    bio,\n    \"image\": photo.asset->url\n  },\n  teaser\n}\n": FindOneeventsByIdQueryResult;
         "*[_type == \"footer\"][0]{\n    \"logo\":logo.asset->url,\n    programmingTitle,\n    programmingText,\n    helpTitle,\n    \"helpPhone\": helpPhone->number,\n    locationTitle,\n    socialLinks[]-> {\n      \"_key\":_id,\n      url,\n      \"plataform\":type->title,\n      \"icon\": type->icon.asset->url\n      },\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    mapEmbedUrl,\n  }": FooterQueryResult;
@@ -1444,5 +1455,6 @@ declare module "@sanity/client" {
         "\n *[_type == \"homePage\"][0]{\n    heroHeadline,\n    heroDescription,\n    heroButtonTitle,\n    heroButtonLink,\n    \"heroImage\": heroImage.asset->url,\n    dividerText,\n    titleLive,\n    descriptionLive,\n    youtubeUrl,\n    buttonLiveText,\n    butonLiveLink,\n    \"liveBannerImage\": liveBannerImage.asset->url,\n  }\n": HomePageQueryResult;
         "\n*[_type == \"sermonSummary\"] | order(date desc)[0...5] {\n      _id,\n      title,\n      date,\n      \"slug\": slug.current,\n      \"background\": background.asset->url,\n      speaker->{ name, titleAbbreviation, \"photo\":photo.asset->url}\n      \n    }\n  ": HomePageSermonsQueryResult;
         "\n *[_type == \"smed\"] | order(_createdAt desc) {\n      title,\n      \"banner\": banner.asset->url\n    }\n  ": HomePageSmedsQueryResult;
+        "\n  *[_type == \"sermonSummaryPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n  }": SermonSummaryPageQueryResult;
     }
 }
