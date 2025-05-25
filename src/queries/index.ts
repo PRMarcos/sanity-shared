@@ -13,6 +13,8 @@ import { homePageEventsQuery } from "./homePageEventsQuery";
 import { SmedsPageQuery } from "./SmedsPageQuery";
 import { getSmedListQuery } from "./getSmedListQuery";
 import { getAllTagsQuery } from "./getAllTagsQuery";
+import { eventPageQuery } from "./eventPageQuery";
+import { sermonSummaryPageQuery } from "./sermonSummaryPageQuery";
 
 export {
         contactPageQuery,
@@ -28,7 +30,9 @@ export {
         homePageEventsQuery,
         SmedsPageQuery,
         getSmedListQuery,
-        getAllTagsQuery
+        getAllTagsQuery,
+        eventPageQuery,
+        sermonSummaryPageQuery
     }
 
 
