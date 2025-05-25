@@ -3,7 +3,7 @@ import { validateImageInput } from '../../utils'
 
 
 export default defineType({
-  name: 'sermonSumaryPage',
+  name: 'sermonSummaryPage',
   title: 'Página Resumo da Palavra',
   type: 'document',
   fields: [

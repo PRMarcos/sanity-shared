@@ -326,7 +326,7 @@
     }
   },
   {
-    "name": "sermonSumaryPage",
+    "name": "sermonSummaryPage",
     "type": "document",
     "attributes": {
       "_id": {
@@ -339,7 +339,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "sermonSumaryPage"
+          "value": "sermonSummaryPage"
         }
       },
       "_createdAt": {

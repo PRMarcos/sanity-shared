@@ -61,9 +61,9 @@ export type Geopoint = {
     lng?: number;
     alt?: number;
 };
-export type SermonSumaryPage = {
+export type SermonSummaryPage = {
     _id: string;
-    _type: "sermonSumaryPage";
+    _type: "sermonSummaryPage";
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
@@ -926,7 +926,7 @@ export type HslaColor = {
     l?: number;
     a?: number;
 };
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | SermonSumaryPage | EventsPage | Smed | SermonTag | SermonSummary | Slug | Person | Event | Header | AboutPage | OurSmedsPage | HomePage | Footer | ContactPage | PhoneEntry | EmailEntry | SocialLink | SupportedSocialMidia | Address | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Code | Color | RgbaColor | HsvaColor | HslaColor;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | SermonSummaryPage | EventsPage | Smed | SermonTag | SermonSummary | Slug | Person | Event | Header | AboutPage | OurSmedsPage | HomePage | Footer | ContactPage | PhoneEntry | EmailEntry | SocialLink | SupportedSocialMidia | Address | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Code | Color | RgbaColor | HsvaColor | HslaColor;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 export type SmedsPageQueryResult = {
     title: string | null;
