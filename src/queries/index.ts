@@ -5,7 +5,7 @@ import { getResumedEventListQuery } from "./getResumedEventListQuery";
 import { footerQuery } from "./footerQuery";    
 import { headerQuery } from "./headerQuery";  
 import { homePageQuery } from "./homePageQuery";
-import { findOneeventsByIdQuery } from "./findOneeventsByIdQuery";
+import { findOneEventByIdQuery } from "./findOneEventByIdQuery";
 import { findOneSermonByIdQuery } from "./findOneSermonByIdQuery";
 import { homePageSmedsQuery } from "./homePageSmedsQuery";
 import { homePageSermonsQuery } from "./homePageSermonsQuery";
@@ -23,7 +23,7 @@ export {
         homePageQuery,
         getResumedSermonSumaryListQuery,
         getResumedEventListQuery,
-        findOneeventsByIdQuery,
+        findOneEventByIdQuery,
         findOneSermonByIdQuery,
         homePageSmedsQuery,
         homePageSermonsQuery,

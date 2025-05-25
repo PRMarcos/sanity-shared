@@ -387,7 +387,8 @@ export type Event = {
     sessions?: Array<{
       title?: string;
       description?: string;
-      time?: string;
+      starTime?: string;
+      endTime?: string;
       _type: "session";
       _key: string;
     }>;
@@ -1104,71 +1105,10 @@ export type EventPageQueryResult = {
   bannerImage: string | null;
 } | null;
 
-// Source: ./src/queries/findOneSermonByIdQuery.ts
-// Variable: findOneSermonByIdQuery
-// Query: *[_type == "sermonSummary" && _id == $id][0] { _id,  "allTags": *[_type == "sermonTag"] {_id,title},  title,  date,  "slug": slug.current,  "background": background.asset->url,  "speaker": speaker->{    name,    birthDate,    title,    titleAbbreviation,    biography,    "image": photo.asset->url  },  "tags": tags[]->{    _id,    title  },  "videoLink": videoUrl,  content}
-export type FindOneSermonByIdQueryResult = {
-  _id: string;
-  allTags: Array<{
-    _id: string;
-    title: string | null;
-  }>;
-  title: string | null;
-  date: string | null;
-  slug: string | null;
-  background: string | null;
-  speaker: {
-    name: string | null;
-    birthDate: string | null;
-    title: string | null;
-    titleAbbreviation: string | null;
-    biography: null;
-    image: string | null;
-  } | null;
-  tags: Array<{
-    _id: string;
-    title: string | null;
-  }> | null;
-  videoLink: string | null;
-  content: Array<{
-    _key: string;
-  } & Code | {
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      blank?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-    _key: string;
-  }> | null;
-} | null;
-
-// Source: ./src/queries/findOneeventsByIdQuery.ts
-// Variable: findOneeventsByIdQuery
-// Query: *[_type == "event" && _id == $id][0] {  title,  about,  shortDescription,  "address": address->{    title,    street,    city,    state,    zip  },  "banner": banner.asset->url,  "bannerMobile": bannerMobile.asset->url,  "eventColor": eventColor.hex,  organizer {    description,    "phone": phone->{      number,      name    },    "email": email->{      address,      name    }  },  "schedule": schedule[]{    date,    startTime,    endTime,    sessions[]{      title,      description,      time    }  },  "background": background.asset->url,  "speakers": speakers[]->{    name,    birthDate,    title,    titleAbbreviation,    bio,    "image": photo.asset->url  },  teaser}
-export type FindOneeventsByIdQueryResult = {
+// Source: ./src/queries/findOneEventByIdQuery.ts
+// Variable: findOneEventByIdQuery
+// Query: *[_type == "event" && _id == $id][0] {  title,  about,  shortDescription,  "address": address->{    title,    street,    city,    state,    zip  },  "banner": banner.asset->url,  "bannerMobile": bannerMobile.asset->url,  "eventColor": eventColor.hex,  organizer {    description,    "phone": phone->{      number,      name    },    "email": email->{      address,      name    }  },  "schedule": schedule[]{    date,    startTime,    endTime,    sessions[]{      title,      description,      starTime,      endTime    }  },  "background": background.asset->url,  "speakers": speakers[]->{    name,    birthDate,    title,    titleAbbreviation,    bio,    "image": photo.asset->url  },  teaser}
+export type FindOneEventByIdQueryResult = {
   title: string | null;
   about: Array<{
     _key: string;
@@ -1245,7 +1185,8 @@ export type FindOneeventsByIdQueryResult = {
     sessions: Array<{
       title: string | null;
       description: string | null;
-      time: string | null;
+      starTime: string | null;
+      endTime: string | null;
     }> | null;
   }> | null;
   background: string | null;
@@ -1275,6 +1216,67 @@ export type FindOneeventsByIdQueryResult = {
     image: string | null;
   }> | null;
   teaser: string | null;
+} | null;
+
+// Source: ./src/queries/findOneSermonByIdQuery.ts
+// Variable: findOneSermonByIdQuery
+// Query: *[_type == "sermonSummary" && _id == $id][0] { _id,  "allTags": *[_type == "sermonTag"] {_id,title},  title,  date,  "slug": slug.current,  "background": background.asset->url,  "speaker": speaker->{    name,    birthDate,    title,    titleAbbreviation,    biography,    "image": photo.asset->url  },  "tags": tags[]->{    _id,    title  },  "videoLink": videoUrl,  content}
+export type FindOneSermonByIdQueryResult = {
+  _id: string;
+  allTags: Array<{
+    _id: string;
+    title: string | null;
+  }>;
+  title: string | null;
+  date: string | null;
+  slug: string | null;
+  background: string | null;
+  speaker: {
+    name: string | null;
+    birthDate: string | null;
+    title: string | null;
+    titleAbbreviation: string | null;
+    biography: null;
+    image: string | null;
+  } | null;
+  tags: Array<{
+    _id: string;
+    title: string | null;
+  }> | null;
+  videoLink: string | null;
+  content: Array<{
+    _key: string;
+  } & Code | {
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      blank?: boolean;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }> | null;
 } | null;
 
 // Source: ./src/queries/footerQuery.ts
@@ -1544,8 +1546,8 @@ declare module "@sanity/client" {
     "\n \n *[_type == \"ourSmedsPage\"][0]{  \n  title,\n  \"bannerImage\": bannerImage.asset->url,\n  description,\n  conclusion,\n}\n\n  ": SmedsPageQueryResult;
     "\n  *[_type == \"contactPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n    description,\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    \"phone\": phone->number,\n    \"email\": email->address,\n    \"DefaultSocial\": DefaultSocial->socialUserName,\n    \"DefaultSocialLink\": DefaultSocial->url,\n    \"whatsApp\": WhatsPhone->number,\n\n    AvailableHours\n  }": ContactPageQueryResult;
     "\n  *[_type == \"eventsPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n  }": EventPageQueryResult;
+    "\n *[_type == \"event\" && _id == $id][0] {\n  title,\n  about,\n  shortDescription,\n  \"address\": address->{\n    title,\n    street,\n    city,\n    state,\n    zip\n  },\n  \"banner\": banner.asset->url,\n  \"bannerMobile\": bannerMobile.asset->url,\n  \"eventColor\": eventColor.hex,\n  organizer {\n    description,\n    \"phone\": phone->{\n      number,\n      name\n    },\n    \"email\": email->{\n      address,\n      name\n    }\n  },\n  \"schedule\": schedule[]{\n    date,\n    startTime,\n    endTime,\n    sessions[]{\n      title,\n      description,\n      starTime,\n      endTime\n    }\n  },\n  \"background\": background.asset->url,\n  \"speakers\": speakers[]->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    bio,\n    \"image\": photo.asset->url\n  },\n  teaser\n}\n": FindOneEventByIdQueryResult;
     "\n*[_type == \"sermonSummary\" && _id == $id][0] {\n _id,\n  \"allTags\": *[_type == \"sermonTag\"] {_id,title},\n  title,\n  date,\n  \"slug\": slug.current,\n  \"background\": background.asset->url,\n  \"speaker\": speaker->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    biography,\n    \"image\": photo.asset->url\n  },\n  \"tags\": tags[]->{\n    _id,\n    title\n  },\n  \"videoLink\": videoUrl,\n  content\n}\n": FindOneSermonByIdQueryResult;
-    "\n *[_type == \"event\" && _id == $id][0] {\n  title,\n  about,\n  shortDescription,\n  \"address\": address->{\n    title,\n    street,\n    city,\n    state,\n    zip\n  },\n  \"banner\": banner.asset->url,\n  \"bannerMobile\": bannerMobile.asset->url,\n  \"eventColor\": eventColor.hex,\n  organizer {\n    description,\n    \"phone\": phone->{\n      number,\n      name\n    },\n    \"email\": email->{\n      address,\n      name\n    }\n  },\n  \"schedule\": schedule[]{\n    date,\n    startTime,\n    endTime,\n    sessions[]{\n      title,\n      description,\n      time\n    }\n  },\n  \"background\": background.asset->url,\n  \"speakers\": speakers[]->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    bio,\n    \"image\": photo.asset->url\n  },\n  teaser\n}\n": FindOneeventsByIdQueryResult;
     "*[_type == \"footer\"][0]{\n    \"logo\":logo.asset->url,\n    programmingTitle,\n    programmingText,\n    helpTitle,\n    \"helpPhone\": helpPhone->number,\n    locationTitle,\n    socialLinks[]-> {\n      \"_key\":_id,\n      url,\n      \"plataform\":type->title,\n      \"icon\": type->icon.asset->url\n      },\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    mapEmbedUrl,\n  }": FooterQueryResult;
     "\n  *[_type == \"sermonTag\"] {\n  _id,\n  title,\n  \"slug\": slug.current\n  }\n    \n": GetAllTagsQueryResult;
     "\n   *[_type == \"event\"]{\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[] {\n        date,\n        startTime,\n        endTime\n      },\n      \"background\": background.asset->url,\n  }\n": GetResumedEventListQueryResult;

@@ -1,7 +1,5 @@
-import groq from "groq"
-
-  
-  export const findOneeventsByIdQuery = groq`
+import groq from "groq";
+export const findOneEventByIdQuery = groq `
  *[_type == "event" && _id == $id][0] {
   title,
   about,
@@ -34,7 +32,8 @@ import groq from "groq"
     sessions[]{
       title,
       description,
-      time
+      starTime,
+      endTime
     }
   },
   "background": background.asset->url,
@@ -49,4 +48,3 @@ import groq from "groq"
   teaser
 }
 `;
-

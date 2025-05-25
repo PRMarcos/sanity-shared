@@ -2437,7 +2437,14 @@
                         },
                         "optional": true
                       },
-                      "time": {
+                      "starTime": {
+                        "type": "objectAttribute",
+                        "value": {
+                          "type": "string"
+                        },
+                        "optional": true
+                      },
+                      "endTime": {
                         "type": "objectAttribute",
                         "value": {
                           "type": "string"

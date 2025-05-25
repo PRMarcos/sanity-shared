@@ -1,5 +1,5 @@
 import { defineType, defineField } from 'sanity';
-import { richText, simpleText, validateImageInput } from '../../utils';
+import { richText, simpleText, validateImageInput, validateTimeFormat } from '../../utils';
 export default defineType({
     name: 'event',
     title: 'Cadastro de Evento',
@@ -76,14 +76,16 @@ export default defineType({
                         defineField({
                             name: 'startTime',
                             title: 'Hora de Início',
+                            description: "Esse é um horario geral do evento, é o que vai aparecer primeiro para as pesosas, a programação detalhada é definida abaixo",
                             type: 'string',
-                            validation: Rule => Rule.required(),
+                            validation: validateTimeFormat,
                         }),
                         defineField({
                             name: 'endTime',
                             title: 'Hora de Término',
+                            description: "Esse é um horario geral do evento, é o que vai aparecer primeiro para as pesosas, a programação detalhada é definida abaixo",
                             type: 'string',
-                            validation: Rule => Rule.required(),
+                            validation: validateTimeFormat,
                         }),
                         defineField({
                             name: 'sessions',
@@ -97,7 +99,8 @@ export default defineType({
                                     fields: [
                                         { name: 'title', title: 'Título', type: 'string' },
                                         { name: 'description', title: 'Descrição', type: 'text' },
-                                        { name: 'time', title: 'Horário', type: 'string' },
+                                        { name: 'starTime', title: 'Horário Inicio', type: 'string', validation: validateTimeFormat, },
+                                        { name: 'endTime', title: 'Horário Final', type: 'string', validation: validateTimeFormat, },
                                     ],
                                 }),
                             ],
