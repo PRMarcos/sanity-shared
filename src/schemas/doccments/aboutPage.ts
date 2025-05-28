@@ -15,7 +15,8 @@ export default defineType({
       name: 'bannerImage',
       title: 'Imagem de banner',
       description:"Banner principal da página.Resolução e aspecto minimos esperados 1280x480",
-      type: 'image', 
+      type: 'image',
+      options: { hotspot: true },
       validation: Rule => Rule
             .custom(validateImageInput({ minWidth:1280, aspectRatio: 2.67 }))
             .required()

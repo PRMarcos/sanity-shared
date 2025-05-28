@@ -47,7 +47,8 @@ export function richText({ title, name }) {
                     ],
                 },
             },
-            { type: 'image', options: {} },
+            { type: 'image',
+                options: { hotspot: true } },
             { type: 'code', title: 'Código' },
         ],
     };

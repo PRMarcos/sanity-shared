@@ -37,9 +37,7 @@ export default defineType({
             title: 'Ícone do header',
             description: "Imagem de icone do header. Precisa ser no mínimo 50x50 e precisa ser uma imagem quadrada",
             type: 'image',
-            options: {
-                hotspot: false,
-            },
+            options: { hotspot: true },
             validation: Rule => Rule
                 .custom(validateImageInput({ minWidth: 50, aspectRatio: 1 }))
                 .required()

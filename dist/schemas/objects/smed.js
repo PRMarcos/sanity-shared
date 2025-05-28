@@ -16,6 +16,7 @@ export default defineType({
             title: 'Imagem Representativa do SMED',
             description: "Imagem para ser usada como fundo nos cards de apresentação, resolução e aspecto minimos esperados 264x400",
             type: 'image',
+            options: { hotspot: true },
             validation: Rule => Rule
                 .custom(validateImageInput({ minWidth: 264, aspectRatio: 0.66 }))
                 .required()
@@ -25,6 +26,7 @@ export default defineType({
             title: 'Imagem Representativa do SMED',
             description: "Imagem para ser usada na página de apresentação do smed, use uma imagem versatil pois a interface pode alterar o formato do frame",
             type: 'image',
+            options: { hotspot: true },
             validation: Rule => Rule
                 .custom(validateImageInput({ minHeight: 500 }))
                 .required()

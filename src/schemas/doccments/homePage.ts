@@ -84,6 +84,7 @@ export default defineType({
             title: 'Banner Sessão Live',
             description:"Banner da sessão de live. Resolução e aspecto minimos esperados 177x342",
             type: 'image',
+      options: { hotspot: true },
             validation: Rule => Rule
                 .custom(validateImageInput({ minHeight: 342})),
         }),

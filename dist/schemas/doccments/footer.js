@@ -20,6 +20,7 @@ export default defineType({
             name: 'logo',
             title: 'Logo',
             type: 'image',
+            options: { hotspot: true },
             description: "Logo da sessão footer. Resolução e aspecto minimos esperados 208x51",
             validation: Rule => Rule
                 .custom(validateImageInput({ minWidth: 208 }))

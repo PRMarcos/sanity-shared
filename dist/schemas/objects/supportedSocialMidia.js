@@ -20,10 +20,8 @@ export default defineType({
             name: 'icon',
             title: 'Ícone',
             type: 'image',
+            options: { hotspot: true },
             description: "Icone da rede social em formato de imagem",
-            options: {
-                hotspot: true,
-            },
             validation: Rule => Rule
                 .custom(validateImageInput({ minWidth: 50, aspectRatio: 1 }))
                 .required()

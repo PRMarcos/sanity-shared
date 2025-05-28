@@ -48,6 +48,7 @@ export default defineType({
       title: 'Imagem de fundo',
       description:" Imagem de fundo para ser usada nos cards de apresentação, resolução minima esperada 700x350",
       type: 'image',
+      options: { hotspot: true },
       validation: Rule => Rule
       .custom(validateImageInput({ minWidth:700, aspectRatio: 2}))
       .required(),

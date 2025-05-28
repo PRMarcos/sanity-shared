@@ -24,6 +24,7 @@ export default defineType({
       title: 'Banner (Desktop)',
       description:"Banner principal do evento, vai ser usado como capa principal no desktop. resolução e aspecto minimo esperado 1280x480",
       type: 'image',
+      options: { hotspot: true },
       validation: Rule => Rule.required()
       .custom(validateImageInput({ minWidth:1280, aspectRatio: 2.67 }))
     }),
@@ -32,6 +33,7 @@ export default defineType({
       title: 'Banner (Mobile)',
       description:"Banner principal do evento, vai ser usado como capa principal no mobile. resolução e aspecto minimo esperado 375x400",
       type: 'image',
+      options: { hotspot: true },
       validation: Rule => Rule
       .custom(validateImageInput({ minWidth:375, aspectRatio: 0.9375 }))
     }),
@@ -40,6 +42,7 @@ export default defineType({
       description:"Imagem que serve de fundo para os cards do evento, resolução minima e aspecto esperado 508x400  ",
       title: 'Imagem de fundo para o evento',
       type: 'image',
+      options: { hotspot: true },
       validation: Rule => Rule.required()
       .custom(validateImageInput({ minWidth:508, aspectRatio: 1.27 }))
     }),
