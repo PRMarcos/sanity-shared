@@ -6,6 +6,13 @@ export default defineType({
     type: 'document',
     fields: [
         defineField({
+            name: 'isActive',
+            title: 'Evento Ativo?',
+            type: 'boolean',
+            initialValue: true, // valor padrão
+            description: 'Desmarque para desativar a exibição do evento.',
+        }),
+        defineField({
             name: 'title',
             title: 'Título',
             type: 'string',
@@ -14,9 +21,11 @@ export default defineType({
         defineField({
             ...simpleText({
                 name: "shortDescription",
-                title: "Descrição Curta"
+                title: "Descrição Curta",
             }),
-            validation: Rule => Rule.required().error('A descrição curta é obrigatória.'),
+            description: "Alguns componentes podem esconder textos maiores que 150 carateres.",
+            validation: Rule => Rule.required().error('A descrição curta é obrigatória.')
+                .max(160).warning('Limite de 200 caracteres.'),
         }),
         defineField({
             name: 'banner',
