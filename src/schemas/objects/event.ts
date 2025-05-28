@@ -6,7 +6,14 @@ export default defineType({
   title: 'Cadastro de Evento',
   type: 'document',
   fields: [
-      defineField({
+    defineField({
+      name: 'isActive',
+      title: 'Evento Ativo?',
+      type: 'boolean',
+      initialValue: true, // valor padrão
+      description: 'Desmarque para desativar a exibição do evento.',
+    }),
+    defineField({
       name: 'title',
       title: 'Título',
       type: 'string',
@@ -15,36 +22,39 @@ export default defineType({
     defineField({
       ...simpleText({
         name: "shortDescription",
-        title: "Descrição Curta"
+        title: "Descrição Curta",
+
       }),
-      validation: Rule => Rule.required().error('A descrição curta é obrigatória.'),
+      description: "Alguns componentes podem esconder textos maiores que 150 carateres.",
+      validation: Rule => Rule.required().error('A descrição curta é obrigatória.')
+        .max(160).warning('Limite de 200 caracteres.'),
     }),
     defineField({
       name: 'banner',
       title: 'Banner (Desktop)',
-      description:"Banner principal do evento, vai ser usado como capa principal no desktop. resolução e aspecto minimo esperado 1280x480",
+      description: "Banner principal do evento, vai ser usado como capa principal no desktop. resolução e aspecto minimo esperado 1280x480",
       type: 'image',
       options: { hotspot: true },
       validation: Rule => Rule.required()
-      .custom(validateImageInput({ minWidth:1280, aspectRatio: 2.67 }))
+        .custom(validateImageInput({ minWidth: 1280, aspectRatio: 2.67 }))
     }),
-     defineField({
+    defineField({
       name: 'bannerMobile',
       title: 'Banner (Mobile)',
-      description:"Banner principal do evento, vai ser usado como capa principal no mobile. resolução e aspecto minimo esperado 375x400",
+      description: "Banner principal do evento, vai ser usado como capa principal no mobile. resolução e aspecto minimo esperado 375x400",
       type: 'image',
       options: { hotspot: true },
       validation: Rule => Rule
-      .custom(validateImageInput({ minWidth:375, aspectRatio: 0.9375 }))
+        .custom(validateImageInput({ minWidth: 375, aspectRatio: 0.9375 }))
     }),
     defineField({
       name: 'background',
-      description:"Imagem que serve de fundo para os cards do evento, resolução minima e aspecto esperado 508x400  ",
+      description: "Imagem que serve de fundo para os cards do evento, resolução minima e aspecto esperado 508x400  ",
       title: 'Imagem de fundo para o evento',
       type: 'image',
       options: { hotspot: true },
       validation: Rule => Rule.required()
-      .custom(validateImageInput({ minWidth:508, aspectRatio: 1.27 }))
+        .custom(validateImageInput({ minWidth: 508, aspectRatio: 1.27 }))
     }),
     defineField({
       ...richText({
@@ -64,10 +74,10 @@ export default defineType({
           title: 'Dia da Programação',
           type: 'object',
           fields: [
-             defineField({
+            defineField({
               name: 'title',
               title: 'Título do dia',
-              description:"Pode ser o nome do dia, ou o titulo da programação do dia. ex.: Sexta-feira ou Dia Livre",
+              description: "Pode ser o nome do dia, ou o titulo da programação do dia. ex.: Sexta-feira ou Dia Livre",
               type: 'string',
               validation: Rule => Rule.required(),
             }),
@@ -80,14 +90,14 @@ export default defineType({
             defineField({
               name: 'startTime',
               title: 'Hora de Início',
-              description:"Esse é um horario geral do evento, é o que vai aparecer primeiro para as pesosas, a programação detalhada é definida abaixo",
+              description: "Esse é um horario geral do evento, é o que vai aparecer primeiro para as pesosas, a programação detalhada é definida abaixo",
               type: 'string',
               validation: validateTimeFormat,
             }),
             defineField({
               name: 'endTime',
               title: 'Hora de Término',
-              description:"Esse é um horario geral do evento, é o que vai aparecer primeiro para as pesosas, a programação detalhada é definida abaixo",
+              description: "Esse é um horario geral do evento, é o que vai aparecer primeiro para as pesosas, a programação detalhada é definida abaixo",
               type: 'string',
               validation: validateTimeFormat,
             }),

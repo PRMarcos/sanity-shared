@@ -2,7 +2,7 @@ import groq from "groq"
 
   
   export const findOneEventByIdQuery = groq`
- *[_type == "event" && _id == $id][0] {
+ *[_type == "event" && _id == $id && isActive == true][0] {
   title,
   about,
   shortDescription,
