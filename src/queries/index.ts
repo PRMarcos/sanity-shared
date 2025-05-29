@@ -17,6 +17,7 @@ import { eventPageQuery } from "./eventPageQuery";
 import { sermonSummaryPageQuery } from "./sermonSummaryPageQuery";
 import { aboutPageQuery } from "./aboutPageQuery";
 import { getPersonListQuery } from "./getPersonListQuery";
+import { getPixelId } from "./getPixelId";
 
 export {
         contactPageQuery,
@@ -36,7 +37,8 @@ export {
         eventPageQuery,
         sermonSummaryPageQuery,
         aboutPageQuery,
-        getPersonListQuery
+        getPersonListQuery,
+        getPixelId
     }
 
 
