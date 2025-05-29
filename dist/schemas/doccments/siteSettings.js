@@ -10,4 +10,11 @@ export default defineType({
             type: 'string',
         },
     ],
+    preview: {
+        prepare() {
+            return {
+                title: "Cofigurações do Site",
+            };
+        },
+    },
 });
