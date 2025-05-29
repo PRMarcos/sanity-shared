@@ -16,6 +16,7 @@ import person from './objects/person'
 import smed from './objects/smed'
 import eventsPage from './doccments/eventsPage'
 import sermonSummaryPage from './doccments/sermonSummaryPage'
+import siteSettings from './doccments/siteSettings'
 // outros...
 
 export const schemaTypes = [
@@ -36,6 +37,7 @@ export const schemaTypes = [
   person,
   smed,
   eventsPage,
-  sermonSummaryPage
+  sermonSummaryPage,
+  siteSettings
   // outros...
 ]
