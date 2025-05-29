@@ -41,6 +41,7 @@ export default defineType({
             title: "Eventos que aparecem na home",
             description: "Escolha entre eventos cadastrados. Apenas eventos ativos aparecerão aqui.",
             type: "array",
+            validation: Rule => Rule.required().error('Esse é um campo obrigatório.').min(3).max(3),
             of: [
                 {
                     type: "reference",
