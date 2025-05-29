@@ -10,7 +10,7 @@ export default defineType({
       name: 'isActive',
       title: 'Evento Ativo?',
       type: 'boolean',
-      initialValue: true, // valor padrão
+      initialValue: true,
       description: 'Desmarque para desativar a exibição do evento.',
     }),
     defineField({
@@ -187,7 +187,7 @@ export default defineType({
     prepare(selection) {
       const { title, media, firstDay } = selection
       const formattedDate = firstDay
-        ? new Date(firstDay).toLocaleDateString('pt-BR')
+        ? new Date(firstDay).toLocaleDateString('pt-BR', { timeZone: 'UTC' })
         : 'Sem data definida'
 
       return {
