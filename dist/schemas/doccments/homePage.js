@@ -37,6 +37,21 @@ export default defineType({
                 .custom(validateImageInput({ maxWidth: 2000, })),
         }),
         defineField({
+            name: "eventList",
+            title: "Eventos que aparecem na home",
+            description: "Escolha entre eventos cadastrados. Apenas eventos ativos aparecerão aqui.",
+            type: "array",
+            of: [
+                {
+                    type: "reference",
+                    to: [{ type: "event" }],
+                    options: {
+                        filter: 'isActive == true'
+                    }
+                }
+            ]
+        }),
+        defineField({
             ...simpleText({
                 name: "dividerText",
                 title: "Texto Divisor de sessão"

@@ -1,10 +1,17 @@
 import { defineType, defineField } from 'sanity';
-import { richText, validateImageInput } from '../../utils';
+import { richText, slugify, validateImageInput } from '../../utils';
 export default defineType({
     name: 'sermonSummary',
     title: 'Cadastro de Resumos das Palavras',
     type: 'document',
     fields: [
+        defineField({
+            name: 'isActive',
+            title: 'Resumo Ativo?',
+            type: 'boolean',
+            initialValue: true,
+            description: 'Desmarque para desativar a exibição do evento.',
+        }),
         defineField({
             name: 'title',
             title: 'Título',
@@ -57,7 +64,7 @@ export default defineType({
             type: 'slug',
             options: {
                 source: 'title',
-                maxLength: 96,
+                slugify: slugify,
             },
             validation: Rule => Rule.required(),
         }),
