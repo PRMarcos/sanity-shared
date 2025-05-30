@@ -99,8 +99,19 @@ export default defineType({
         media,
       }
     },
-  }
-  ,
-})
+  },
+ orderings: [
+  {
+    title: 'Data da palavra (mais recentes primeiro)',
+    name: 'wordDateDesc',
+    by: [{ field: 'date', direction: 'desc' }],
+  },
+  {
+    title: 'Data da palavra (mais antigas primeiro)',
+    name: 'wordDateAsc',
+    by: [{ field: 'date', direction: 'asc' }],
+  },
+],
 
+})
 

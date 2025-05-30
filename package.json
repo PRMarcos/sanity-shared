@@ -27,7 +27,7 @@
 }
 ,
   "scripts": {
-    "build": "sanity schema extract && sanity typegen generate && tsc"
+    "build": "rm -rf dist && sanity schema extract && sanity typegen generate && tsc"
   },
   "keywords": [],
   "author": "",
