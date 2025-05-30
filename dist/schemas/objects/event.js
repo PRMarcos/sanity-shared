@@ -100,6 +100,20 @@ export default defineType({
                             ],
                         }),
                     ],
+                    preview: {
+                        select: {
+                            showDate: 'date',
+                        },
+                        prepare(selection) {
+                            const { showDate } = selection;
+                            const formattedDate = showDate
+                                ? new Date(showDate).toLocaleDateString('pt-BR', { timeZone: 'UTC' })
+                                : 'Sem data definida';
+                            return {
+                                title: formattedDate,
+                            };
+                        },
+                    },
                 }),
             ],
         }),

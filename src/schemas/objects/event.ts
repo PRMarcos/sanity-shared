@@ -73,7 +73,7 @@ export default defineType({
           name: 'daySchedule',
           title: 'Dia da Programação',
           type: 'object',
-          validation:Rule=>Rule.required(),
+          validation: Rule => Rule.required(),
           fields: [
             defineField({
               name: 'date',
@@ -84,9 +84,9 @@ export default defineType({
             defineField({
               name: 'sessions',
               title: 'Programação:',
-              description:"Cadastre pelo menos uma programação com titulo, hora e data",
+              description: "Cadastre pelo menos uma programação com titulo, hora e data",
               type: 'array',
-              validation:Rule => Rule.required().min(1),
+              validation: Rule => Rule.required().min(1),
               of: [
                 defineField({
                   name: 'session',
@@ -94,7 +94,7 @@ export default defineType({
                   type: 'object',
                   fields: [
                     { name: 'title', title: 'Título', type: 'string' },
-                    {...simpleText({name: "description", title: "Descrição",}),},
+                    { ...simpleText({ name: "description", title: "Descrição", }), },
                     { name: 'starTime', title: 'Horário Inicio', type: 'string', validation: validateTimeFormat, },
                     { name: 'endTime', title: 'Horário Final', type: 'string', validation: validateTimeFormat, },
                   ],
@@ -102,6 +102,23 @@ export default defineType({
               ],
             }),
           ],
+          preview: {
+            select: {
+              showDate: 'date',
+            },
+            prepare(selection) {
+              const { showDate } = selection
+              const formattedDate = showDate
+                ? new Date(showDate).toLocaleDateString('pt-BR', { timeZone: 'UTC' })
+                : 'Sem data definida'
+
+              return {
+                title:formattedDate,
+              }
+            },
+          },
+
+
         }),
       ],
     }),
