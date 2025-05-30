@@ -41,16 +41,26 @@ export default defineType({
             title: "Eventos que aparecem na home",
             description: "Escolha entre eventos cadastrados. Apenas eventos ativos aparecerão aqui.",
             type: "array",
-            validation: Rule => Rule.required().error('Esse é um campo obrigatório.').min(3).max(3),
             of: [
                 {
                     type: "reference",
                     to: [{ type: "event" }],
                     options: {
-                        filter: 'isActive == true'
-                    }
-                }
-            ]
+                        filter: 'isActive == true',
+                    },
+                },
+            ],
+            validation: Rule => Rule.required()
+                .min(3)
+                .max(3)
+                .custom((items) => {
+                if (!Array.isArray(items))
+                    return true;
+                const ids = items.map(item => item._ref);
+                const hasDuplicates = new Set(ids).size !== ids.length;
+                return hasDuplicates ? 'Não é permitido repetir eventos.' : true;
+            })
+                .error('Esse é um campo obrigatório e deve conter 3 eventos únicos.'),
         }),
         defineField({
             ...simpleText({

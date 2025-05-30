@@ -391,13 +391,23 @@ export type Event = {
     _key: string;
   } & Code>;
   schedule?: Array<{
-    title?: string;
     date?: string;
-    startTime?: string;
-    endTime?: string;
     sessions?: Array<{
       title?: string;
-      description?: string;
+      description?: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal";
+        listItem?: never;
+        markDefs?: null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
       starTime?: string;
       endTime?: string;
       _type: "session";
@@ -1240,11 +1250,24 @@ export type FindOneEventByIdQueryResult = {
   } | null;
   schedule: Array<{
     date: string | null;
-    startTime: string | null;
-    endTime: string | null;
+    startTime: null;
+    endTime: null;
     sessions: Array<{
       title: string | null;
-      description: string | null;
+      description: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal";
+        listItem?: never;
+        markDefs?: null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }> | null;
       starTime: string | null;
       endTime: string | null;
     }> | null;
@@ -1435,8 +1458,8 @@ export type GetResumedEventListQueryResult = Array<{
   address: string | null;
   schedule: Array<{
     date: string | null;
-    startTime: string | null;
-    endTime: string | null;
+    startTime: null;
+    endTime: null;
   }> | null;
   background: string | null;
 }>;
@@ -1522,8 +1545,8 @@ export type HomePageEventsQueryResult = Array<{
   address: string | null;
   schedule: Array<{
     date: string | null;
-    startTime: string | null;
-    endTime: string | null;
+    startTime: null;
+    endTime: null;
   }> | null;
   background: string | null;
 }> | null;

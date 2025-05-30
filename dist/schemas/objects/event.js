@@ -71,14 +71,8 @@ export default defineType({
                     name: 'daySchedule',
                     title: 'Dia da Programação',
                     type: 'object',
+                    validation: Rule => Rule.required(),
                     fields: [
-                        defineField({
-                            name: 'title',
-                            title: 'Título do dia',
-                            description: "Pode ser o nome do dia, ou o titulo da programação do dia. ex.: Sexta-feira ou Dia Livre",
-                            type: 'string',
-                            validation: Rule => Rule.required(),
-                        }),
                         defineField({
                             name: 'date',
                             title: 'Data',
@@ -86,23 +80,11 @@ export default defineType({
                             validation: Rule => Rule.required(),
                         }),
                         defineField({
-                            name: 'startTime',
-                            title: 'Hora de Início',
-                            description: "Esse é um horario geral do evento, é o que vai aparecer primeiro para as pesosas, a programação detalhada é definida abaixo",
-                            type: 'string',
-                            validation: validateTimeFormat,
-                        }),
-                        defineField({
-                            name: 'endTime',
-                            title: 'Hora de Término',
-                            description: "Esse é um horario geral do evento, é o que vai aparecer primeiro para as pesosas, a programação detalhada é definida abaixo",
-                            type: 'string',
-                            validation: validateTimeFormat,
-                        }),
-                        defineField({
                             name: 'sessions',
-                            title: 'Programações do Dia',
+                            title: 'Programação:',
+                            description: "Cadastre pelo menos uma programação com titulo, hora e data",
                             type: 'array',
+                            validation: Rule => Rule.required().min(1),
                             of: [
                                 defineField({
                                     name: 'session',
@@ -110,7 +92,7 @@ export default defineType({
                                     type: 'object',
                                     fields: [
                                         { name: 'title', title: 'Título', type: 'string' },
-                                        { name: 'description', title: 'Descrição', type: 'text' },
+                                        { ...simpleText({ name: "description", title: "Descrição", }), },
                                         { name: 'starTime', title: 'Horário Inicio', type: 'string', validation: validateTimeFormat, },
                                         { name: 'endTime', title: 'Horário Final', type: 'string', validation: validateTimeFormat, },
                                     ],
@@ -192,5 +174,17 @@ export default defineType({
                 subtitle: `Início: ${formattedDate}`,
             };
         },
-    }
+    },
+    orderings: [
+        {
+            title: 'Data do evento (mais próximos primeiro)',
+            name: 'eventDateAsc',
+            by: [{ field: 'schedule.0.date', direction: 'asc' }],
+        },
+        {
+            title: 'Data do evento (mais distantes primeiro)',
+            name: 'eventDateDesc',
+            by: [{ field: 'schedule.0.date', direction: 'desc' }],
+        },
+    ],
 });
