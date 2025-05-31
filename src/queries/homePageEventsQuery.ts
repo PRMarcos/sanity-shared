@@ -8,8 +8,10 @@ import groq from "groq";
       "address":address->title,
       schedule[] {
         date,
-        startTime,
-        endTime
+        sessions[]{
+          starTime,
+          endTime
+        }
       },
       "background": background.asset->url
     }
