@@ -7,10 +7,6 @@ export const homePageEventsQuery = groq `
       "address":address->title,
       schedule[] {
         date,
-        sessions[]{
-          starTime,
-          endTime
-        }
       },
       "background": background.asset->url
     }

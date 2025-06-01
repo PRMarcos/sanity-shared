@@ -27,8 +27,6 @@ export const findOneEventByIdQuery = groq `
   },
   "schedule": schedule[]{
     date,
-    startTime,
-    endTime,
     sessions[]{
       title,
       description,

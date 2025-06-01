@@ -7,11 +7,13 @@ export const getResumedEventListQuery = groq`
     title,
     shortDescription,
     "address": address->title,
-    schedule[] {
-      date,
-      startTime,
-      endTime
-    },
+     schedule[] {
+        date,
+        sessions[]{
+          starTime,
+          endTime
+        }
+      },
     "background": background.asset->url,
   }
 `;

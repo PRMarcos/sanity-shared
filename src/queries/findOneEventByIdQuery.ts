@@ -29,8 +29,6 @@ import groq from "groq"
   },
   "schedule": schedule[]{
     date,
-    startTime,
-    endTime,
     sessions[]{
       title,
       description,

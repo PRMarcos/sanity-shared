@@ -91,7 +91,7 @@ export default defineType({
                                     title: 'Sessão',
                                     type: 'object',
                                     fields: [
-                                        { name: 'title', title: 'Título', type: 'string' },
+                                        { name: 'title', title: 'Título', type: 'string', validation: Rule => Rule.required() },
                                         { ...simpleText({ name: "description", title: "Descrição", }), },
                                         { name: 'starTime', title: 'Horário Inicio', type: 'string', validation: validateTimeFormat, },
                                         { name: 'endTime', title: 'Horário Final', type: 'string', validation: validateTimeFormat, },
