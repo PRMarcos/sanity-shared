@@ -29,6 +29,12 @@ export default defineType({
       validation: Rule => Rule.required().error('A descrição curta é obrigatória.')
         .max(160).warning('Limite de 200 caracteres.'),
     }),
+     defineField({
+      name: 'registrtionLink',
+      title: 'Página de Inscrições',
+      description:"Link para a pagina de inscrições externa/google forms ( solução temporária )",
+      type: 'url',
+    }),
     defineField({
       name: 'banner',
       title: 'Banner (Desktop)',

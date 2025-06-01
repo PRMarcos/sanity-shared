@@ -28,6 +28,12 @@ export default defineType({
                 .max(160).warning('Limite de 200 caracteres.'),
         }),
         defineField({
+            name: 'registrtionLink',
+            title: 'Página de Inscrições',
+            description: "Link para a pagina de inscrições externa/google forms ( solução temporária )",
+            type: 'url',
+        }),
+        defineField({
             name: 'banner',
             title: 'Banner (Desktop)',
             description: "Banner principal do evento, vai ser usado como capa principal no desktop. resolução e aspecto minimo esperado 1280x480",

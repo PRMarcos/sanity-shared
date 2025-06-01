@@ -6,6 +6,7 @@ import groq from "groq"
   title,
   about,
   shortDescription,
+  registrtionLink,
   "address": address->{
     title,
     street,

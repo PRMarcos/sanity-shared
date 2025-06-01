@@ -4,6 +4,7 @@ export const findOneEventByIdQuery = groq `
   title,
   about,
   shortDescription,
+  registrtionLink,
   "address": address->{
     title,
     street,
