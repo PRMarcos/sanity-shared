@@ -1449,6 +1449,10 @@ export type HomePageEventsQueryResult = Array<{
     address: string | null;
     schedule: Array<{
         date: string | null;
+        sessions: Array<{
+            starTime: string | null;
+            endTime: string | null;
+        }> | null;
     }> | null;
     background: string | null;
 }> | null;
@@ -1562,7 +1566,7 @@ declare module "@sanity/client" {
         "\n *[_type == \"sermonSummary\" && isActive == true] {\n   _id,   \n   title,\n   date,\n  tags[]->{_id,title},\n   \"slug\": slug.current,\n   \"background\": background.asset->url,\n   speaker->{ name, titleAbbreviation, \"photo\":photo.asset->url},\n    }\n": GetResumedSermonSumaryListQueryResult;
         "\n \n*[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      \"banner\": banner.asset->url,\n      \"bannerHorizontal\": bannerHorizontal.asset->url,\n      smedDescription,\n      smedButton\n    }\n  ": GetSmedListQueryResult;
         "\n  *[_type == \"header\"][0]{\n    items[]{\n      label,\n      link\n    }\n  }\n": HeaderQueryResult;
-        "\n*[_type == \"homePage\"][0].eventList[]->{\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[] {\n        date,\n      },\n      \"background\": background.asset->url\n    }\n": HomePageEventsQueryResult;
+        "\n*[_type == \"homePage\"][0].eventList[]->{\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[] {\n        date,\n        sessions[]{\n          starTime,\n          endTime\n    }\n      },\n      \"background\": background.asset->url\n    }\n": HomePageEventsQueryResult;
         "\n *[_type == \"homePage\"][0]{\n    heroHeadline,\n    heroDescription,\n    heroButtonTitle,\n    heroButtonLink,\n    \"heroImage\": heroImage.asset->url,\n    dividerText,\n    titleLive,\n    descriptionLive,\n    youtubeUrl,\n    buttonLiveText,\n    butonLiveLink,\n    \"liveBannerImage\": liveBannerImage.asset->url,\n  }\n": HomePageQueryResult;
         "\n*[_type == \"sermonSummary\" && isActive == true ] | order(date desc)[0...5] {\n      _id,\n      title,\n      date,\n      \"slug\": slug.current,\n      \"background\": background.asset->url,\n      speaker->{ name, titleAbbreviation, \"photo\":photo.asset->url}\n      \n    }\n  ": HomePageSermonsQueryResult;
         "\n *[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      \"banner\": banner.asset->url\n    }\n  ": HomePageSmedsQueryResult;
