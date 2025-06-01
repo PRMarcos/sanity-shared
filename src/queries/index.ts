@@ -18,6 +18,7 @@ import { sermonSummaryPageQuery } from "./sermonSummaryPageQuery";
 import { aboutPageQuery } from "./aboutPageQuery";
 import { getPersonListQuery } from "./getPersonListQuery";
 import { getPixelId } from "./getPixelId";
+import { findOneSermonBySlugQuery } from "./findOneSermonBySlugQuery";
 
 export {
         contactPageQuery,
@@ -38,7 +39,8 @@ export {
         sermonSummaryPageQuery,
         aboutPageQuery,
         getPersonListQuery,
-        getPixelId
+        getPixelId,
+        findOneSermonBySlugQuery
     }
 
 

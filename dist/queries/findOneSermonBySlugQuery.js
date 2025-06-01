@@ -1,8 +1,6 @@
-import groq from "groq"
-
-  
-  export const findOneSermonByIdQuery = groq`
-*[_type == "sermonSummary" && _id == $id && isActive == true][0] {
+import groq from "groq";
+export const findOneSermonBySlugQuery = groq `
+*[_type == "sermonSummary" && slug.current == $slug && isActive == true][0] {
  _id,
   title,
   date,
@@ -24,4 +22,3 @@ import groq from "groq"
   content
 }
 `;
-

@@ -17,4 +17,5 @@ import { sermonSummaryPageQuery } from "./sermonSummaryPageQuery";
 import { aboutPageQuery } from "./aboutPageQuery";
 import { getPersonListQuery } from "./getPersonListQuery";
 import { getPixelId } from "./getPixelId";
-export { contactPageQuery, footerQuery, headerQuery, homePageQuery, getResumedSermonSumaryListQuery, getResumedEventListQuery, findOneEventByIdQuery, findOneSermonByIdQuery, homePageSmedsQuery, homePageSermonsQuery, homePageEventsQuery, SmedsPageQuery, getSmedListQuery, getAllTagsQuery, eventPageQuery, sermonSummaryPageQuery, aboutPageQuery, getPersonListQuery, getPixelId };
+import { findOneSermonBySlugQuery } from "./findOneSermonBySlugQuery";
+export { contactPageQuery, footerQuery, headerQuery, homePageQuery, getResumedSermonSumaryListQuery, getResumedEventListQuery, findOneEventByIdQuery, findOneSermonByIdQuery, homePageSmedsQuery, homePageSermonsQuery, homePageEventsQuery, SmedsPageQuery, getSmedListQuery, getAllTagsQuery, eventPageQuery, sermonSummaryPageQuery, aboutPageQuery, getPersonListQuery, getPixelId, findOneSermonBySlugQuery };
