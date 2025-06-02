@@ -15,6 +15,7 @@ export const getResumedEventListQuery = groq`
         }
       },
     "background": background.asset->url,
+    "banner": banner.asset->url,
   }
 `;
 

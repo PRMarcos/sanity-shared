@@ -1490,7 +1490,7 @@ export type GetPixelIdResult = {
 
 // Source: ./src/queries/getResumedEventListQuery.ts
 // Variable: getResumedEventListQuery
-// Query: *[_type == "event" && isActive == true]{    _id,      title,    shortDescription,    "address": address->title,     schedule[] {        date,        sessions[]{          starTime,          endTime        }      },    "background": background.asset->url,  }
+// Query: *[_type == "event" && isActive == true]{    _id,      title,    shortDescription,    "address": address->title,     schedule[] {        date,        sessions[]{          starTime,          endTime        }      },    "background": background.asset->url,    "banner": banner.asset->url,  }
 export type GetResumedEventListQueryResult = Array<{
   _id: string;
   title: string | null;
@@ -1517,6 +1517,7 @@ export type GetResumedEventListQueryResult = Array<{
     }> | null;
   }> | null;
   background: string | null;
+  banner: string | null;
 }>;
 
 // Source: ./src/queries/getResumedSermonSumaryListQuery.ts
@@ -1732,7 +1733,7 @@ declare module "@sanity/client" {
     "\n  *[_type == \"sermonTag\"] {\n  _id,\n  title,\n  \"slug\": slug.current\n  }\n    \n": GetAllTagsQueryResult;
     "\n  *[_type == \"person\"]{\n    _id,\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    bio,\n    \"photo\": photo.asset->url\n  }\n": GetPersonListQueryResult;
     "*[_type == \"siteSettings\"][0]{ metaPixelId }": GetPixelIdResult;
-    "\n  *[_type == \"event\" && isActive == true]{\n    _id,  \n    title,\n    shortDescription,\n    \"address\": address->title,\n     schedule[] {\n        date,\n        sessions[]{\n          starTime,\n          endTime\n        }\n      },\n    \"background\": background.asset->url,\n  }\n": GetResumedEventListQueryResult;
+    "\n  *[_type == \"event\" && isActive == true]{\n    _id,  \n    title,\n    shortDescription,\n    \"address\": address->title,\n     schedule[] {\n        date,\n        sessions[]{\n          starTime,\n          endTime\n        }\n      },\n    \"background\": background.asset->url,\n    \"banner\": banner.asset->url,\n  }\n": GetResumedEventListQueryResult;
     "\n *[_type == \"sermonSummary\" && isActive == true] {\n   _id,   \n   title,\n   date,\n  tags[]->{_id,title},\n   \"slug\": slug.current,\n   \"background\": background.asset->url,\n   speaker->{ name, titleAbbreviation, \"photo\":photo.asset->url},\n    }\n": GetResumedSermonSumaryListQueryResult;
     "\n \n*[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      \"banner\": banner.asset->url,\n      \"bannerHorizontal\": bannerHorizontal.asset->url,\n      smedDescription,\n      smedButton\n    }\n  ": GetSmedListQueryResult;
     "\n  *[_type == \"header\"][0]{\n    items[]{\n      label,\n      link\n    }\n  }\n": HeaderQueryResult;
