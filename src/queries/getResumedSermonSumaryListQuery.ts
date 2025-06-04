@@ -8,7 +8,7 @@ import groq from "groq"
    date,
   tags[]->{_id,title},
    "slug": slug.current,
-   "background": background.asset->url,
+   background,
    speaker->{ name, titleAbbreviation, photo},
     }
 `;
