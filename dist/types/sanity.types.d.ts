@@ -1476,8 +1476,30 @@ export type GetResumedSermonSumaryListQueryResult = Array<{
 export type GetSmedListQueryResult = Array<{
     _id: string;
     title: string | null;
-    banner: string | null;
-    bannerHorizontal: string | null;
+    banner: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
+    bannerHorizontal: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
     smedDescription: Array<{
         children?: Array<{
             marks?: Array<string>;
@@ -1650,7 +1672,7 @@ declare module "@sanity/client" {
         "*[_type == \"siteSettings\"][0]{ metaPixelId }": GetPixelIdResult;
         "\n  *[_type == \"event\" && isActive == true]{\n    _id,  \n    title,\n    shortDescription,\n    \"address\": address->title,\n     schedule[] {\n        date,\n        sessions[]{\n          starTime,\n          endTime\n        }\n      },\n    \"background\": background.asset->url,\n    \"banner\": banner.asset->url,\n  }\n": GetResumedEventListQueryResult;
         "\n *[_type == \"sermonSummary\" && isActive == true] {\n   _id,   \n   title,\n   date,\n  tags[]->{_id,title},\n   \"slug\": slug.current,\n   background,\n   speaker->{ name, titleAbbreviation, photo},\n    }\n": GetResumedSermonSumaryListQueryResult;
-        "\n \n*[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      \"banner\": banner.asset->url,\n      \"bannerHorizontal\": bannerHorizontal.asset->url,\n      smedDescription,\n      smedButton\n    }\n  ": GetSmedListQueryResult;
+        "\n \n*[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      banner,\n      bannerHorizontal,\n      smedDescription,\n      smedButton\n    }\n  ": GetSmedListQueryResult;
         "\n  *[_type == \"header\"][0]{\n    items[]{\n      label,\n      link\n    }\n  }\n": HeaderQueryResult;
         "\n*[_type == \"homePage\"][0].eventList[]->{\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[] {\n        date,\n        sessions[]{\n          starTime,\n          endTime\n    }\n      },\n      \"background\": background.asset->url\n    }\n": HomePageEventsQueryResult;
         "\n *[_type == \"homePage\"][0]{\n    heroHeadline,\n    heroDescription,\n    heroButtonTitle,\n    heroButtonLink,\n    \"heroImage\": heroImage.asset->url,\n    dividerText,\n    titleLive,\n    descriptionLive,\n    youtubeUrl,\n    buttonLiveText,\n    butonLiveLink,\n    \"liveBannerImage\": liveBannerImage.asset->url,\n  }\n": HomePageQueryResult;
