@@ -1724,11 +1724,22 @@ export type HomePageSermonsQueryResult = Array<{
 
 // Source: ./src/queries/homePageSmedsQuery.ts
 // Variable: homePageSmedsQuery
-// Query: *[_type == "smed"] | order(_createdAt desc) {      _id,      title,      "banner": banner.asset->url    }
+// Query: *[_type == "smed"] | order(_createdAt desc) {      _id,      title,      banner    }
 export type HomePageSmedsQueryResult = Array<{
   _id: string;
   title: string | null;
-  banner: string | null;
+  banner: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
 }>;
 
 // Source: ./src/queries/sermonSummaryPageQuery.ts
@@ -1762,7 +1773,7 @@ declare module "@sanity/client" {
     "\n*[_type == \"homePage\"][0].eventList[]->{\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[] {\n        date,\n        sessions[]{\n          starTime,\n          endTime\n    }\n      },\n      \"background\": background.asset->url\n    }\n": HomePageEventsQueryResult;
     "\n *[_type == \"homePage\"][0]{\n    heroHeadline,\n    heroDescription,\n    heroButtonTitle,\n    heroButtonLink,\n    \"heroImage\": heroImage.asset->url,\n    dividerText,\n    titleLive,\n    descriptionLive,\n    youtubeUrl,\n    buttonLiveText,\n    butonLiveLink,\n    \"liveBannerImage\": liveBannerImage.asset->url,\n  }\n": HomePageQueryResult;
     "\n*[_type == \"sermonSummary\" && isActive == true ] | order(date desc)[0...5] {\n      _id,\n      title,\n      date,\n      \"slug\": slug.current,\n      \"background\": background.asset->url,\n      speaker->{ name, titleAbbreviation, \"photo\":photo.asset->url}\n      \n    }\n  ": HomePageSermonsQueryResult;
-    "\n *[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      \"banner\": banner.asset->url\n    }\n  ": HomePageSmedsQueryResult;
+    "\n *[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      banner\n    }\n  ": HomePageSmedsQueryResult;
     "\n  *[_type == \"sermonSummaryPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n  }": SermonSummaryPageQueryResult;
   }
 }
