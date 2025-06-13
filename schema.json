@@ -1846,6 +1846,13 @@
         },
         "optional": true
       },
+      "subTitle": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "shortDescription": {
         "type": "objectAttribute",
         "value": {
@@ -2443,6 +2450,13 @@
               }
             ]
           }
+        },
+        "optional": true
+      },
+      "showDetailSchedule": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
         },
         "optional": true
       },

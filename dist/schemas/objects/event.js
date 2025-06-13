@@ -19,6 +19,11 @@ export default defineType({
             validation: Rule => Rule.required().error('O título é obrigatório.'),
         }),
         defineField({
+            name: 'subTitle',
+            title: 'Subtítulo',
+            type: 'string',
+        }),
+        defineField({
             ...simpleText({
                 name: "shortDescription",
                 title: "Descrição Curta",
@@ -66,6 +71,13 @@ export default defineType({
                 title: "Sobre o Evento"
             }),
             validation: Rule => Rule.required().error('A descrição é obrigatória.'),
+        }),
+        defineField({
+            name: 'showDetailSchedule',
+            title: 'Mostrar detalhes do Evento?',
+            type: 'boolean',
+            initialValue: false,
+            description: 'Ativar ou destivar a exibição do detalhamento do evento.',
         }),
         defineField({
             name: 'schedule',

@@ -307,6 +307,7 @@ export type Event = {
   _rev: string;
   isActive?: boolean;
   title?: string;
+  subTitle?: string;
   shortDescription?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -391,6 +392,7 @@ export type Event = {
   } | {
     _key: string;
   } & Code>;
+  showDetailSchedule?: boolean;
   schedule?: Array<{
     date?: string;
     sessions?: Array<{
@@ -1178,9 +1180,10 @@ export type EventPageQueryResult = {
 
 // Source: ./src/queries/findOneEventByIdQuery.ts
 // Variable: findOneEventByIdQuery
-// Query: *[_type == "event" && _id == $id && isActive == true][0] {  title,  about,  shortDescription,  registrtionLink,  "address": address->{    title,    street,    city,    state,    zip  },  "banner": banner.asset->url,  "bannerMobile": bannerMobile.asset->url,  "eventColor": eventColor.hex,  organizer {    description,    "phone": phone->{      number,      name    },    "email": email->{      address,      name    }  },  "schedule": schedule[]{    date,    sessions[]{      title,      description,      starTime,      endTime    }  },  "background": background.asset->url,  "speakers": speakers[]->{    name,    birthDate,    title,    titleAbbreviation,    bio,    "image": photo.asset->url  },  teaser}
+// Query: *[_type == "event" && _id == $id && isActive == true][0] {  title,  subTitle,  about,  shortDescription,  registrtionLink,  "address": address->{    title,    street,    city,    state,    zip  },  "banner": banner.asset->url,  "bannerMobile": bannerMobile.asset->url,  "eventColor": eventColor.hex,  organizer {    description,    "phone": phone->{      number,      name    },    "email": email->{      address,      name    }  },  showDetailSchedule,  "schedule": schedule[]{    date,    sessions[]{      title,      description,      starTime,      endTime    }  },  "background": background.asset->url,  "speakers": speakers[]->{    name,    birthDate,    title,    titleAbbreviation,    bio,    "image": photo.asset->url  },  teaser}
 export type FindOneEventByIdQueryResult = {
   title: string | null;
+  subTitle: string | null;
   about: Array<{
     _key: string;
   } & Code | {
@@ -1250,6 +1253,7 @@ export type FindOneEventByIdQueryResult = {
       name: string | null;
     } | null;
   } | null;
+  showDetailSchedule: boolean | null;
   schedule: Array<{
     date: string | null;
     sessions: Array<{
@@ -1781,7 +1785,7 @@ declare module "@sanity/client" {
     "\n  *[_type == \"aboutPage\"][0] {\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n    leadership[]->{\n      _id,\n      name,\n      birthDate,\n      title,\n      titleAbbreviation,\n      bio,\n      \"photo\": photo.asset->url\n    }\n  }\n": AboutPageQueryResult;
     "\n  *[_type == \"contactPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n    description,\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    \"phone\": phone->number,\n    \"email\": email->address,\n    \"DefaultSocial\": DefaultSocial->socialUserName,\n    \"DefaultSocialLink\": DefaultSocial->url,\n    \"whatsApp\": WhatsPhone->number,\n\n    AvailableHours\n  }": ContactPageQueryResult;
     "\n  *[_type == \"eventsPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n  }": EventPageQueryResult;
-    "\n *[_type == \"event\" && _id == $id && isActive == true][0] {\n  title,\n  about,\n  shortDescription,\n  registrtionLink,\n  \"address\": address->{\n    title,\n    street,\n    city,\n    state,\n    zip\n  },\n  \"banner\": banner.asset->url,\n  \"bannerMobile\": bannerMobile.asset->url,\n  \"eventColor\": eventColor.hex,\n  organizer {\n    description,\n    \"phone\": phone->{\n      number,\n      name\n    },\n    \"email\": email->{\n      address,\n      name\n    }\n  },\n  \"schedule\": schedule[]{\n    date,\n    sessions[]{\n      title,\n      description,\n      starTime,\n      endTime\n    }\n  },\n  \"background\": background.asset->url,\n  \"speakers\": speakers[]->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    bio,\n    \"image\": photo.asset->url\n  },\n  teaser\n}\n": FindOneEventByIdQueryResult;
+    "\n *[_type == \"event\" && _id == $id && isActive == true][0] {\n  title,\n  subTitle,\n  about,\n  shortDescription,\n  registrtionLink,\n  \"address\": address->{\n    title,\n    street,\n    city,\n    state,\n    zip\n  },\n  \"banner\": banner.asset->url,\n  \"bannerMobile\": bannerMobile.asset->url,\n  \"eventColor\": eventColor.hex,\n  organizer {\n    description,\n    \"phone\": phone->{\n      number,\n      name\n    },\n    \"email\": email->{\n      address,\n      name\n    }\n  },\n  showDetailSchedule,\n  \"schedule\": schedule[]{\n    date,\n    sessions[]{\n      title,\n      description,\n      starTime,\n      endTime\n    }\n  },\n  \"background\": background.asset->url,\n  \"speakers\": speakers[]->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    bio,\n    \"image\": photo.asset->url\n  },\n  teaser\n}\n": FindOneEventByIdQueryResult;
     "\n*[_type == \"sermonSummary\" && _id == $id && isActive == true][0] {\n _id,\n  title,\n  date,\n  \"slug\": slug.current,\n  \"background\": background.asset->url,\n  \"speaker\": speaker->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    biography,\n    \"image\": photo.asset->url\n  },\n  \"tags\": tags[]->{\n    _id,\n    title\n  },\n  \"videoLink\": videoUrl,\n  content\n}\n": FindOneSermonByIdQueryResult;
     "\n*[_type == \"sermonSummary\" && slug.current == $slug && isActive == true][0] {\n _id,\n  title,\n  date,\n  \"slug\": slug.current,\n  \"background\": background.asset->url,\n  \"speaker\": speaker->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    biography,\n    \"image\": photo.asset->url\n  },\n  \"tags\": tags[]->{\n    _id,\n    title\n  },\n  \"videoLink\": videoUrl,\n  content\n}\n": FindOneSermonBySlugQueryResult;
     "*[_type == \"footer\"][0]{\n    \"logo\":logo.asset->url,\n    programmingTitle,\n    programmingText,\n    helpTitle,\n    \"helpPhone\": helpPhone->number,\n    locationTitle,\n    socialLinks[]-> {\n      \"_key\":_id,\n      url,\n      \"plataform\":type->title,\n      \"icon\": type->icon.asset->url\n      },\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    mapEmbedUrl,\n  }": FooterQueryResult;

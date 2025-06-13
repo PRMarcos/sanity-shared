@@ -4,6 +4,7 @@ import groq from "groq"
   export const findOneEventByIdQuery = groq`
  *[_type == "event" && _id == $id && isActive == true][0] {
   title,
+  subTitle,
   about,
   shortDescription,
   registrtionLink,
@@ -28,6 +29,7 @@ import groq from "groq"
       name
     }
   },
+  showDetailSchedule,
   "schedule": schedule[]{
     date,
     sessions[]{
