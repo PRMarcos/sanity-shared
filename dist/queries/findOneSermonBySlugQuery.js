@@ -12,7 +12,7 @@ export const findOneSermonBySlugQuery = groq `
     title,
     titleAbbreviation,
     biography,
-    "image": photo.asset->url
+    image,
   },
   "tags": tags[]->{
     _id,
