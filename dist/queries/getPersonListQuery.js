@@ -7,6 +7,6 @@ export const getPersonListQuery = groq `
     title,
     titleAbbreviation,
     bio,
-    "photo": photo.asset->url
+    photo
   }
 `;

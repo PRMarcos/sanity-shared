@@ -13,8 +13,8 @@ export const findOneEventByIdQuery = groq `
     state,
     zip
   },
-  "banner": banner.asset->url,
-  "bannerMobile": bannerMobile.asset->url,
+  banner,
+  bannerMobile,
   "eventColor": eventColor.hex,
   organizer {
     description,
@@ -37,14 +37,14 @@ export const findOneEventByIdQuery = groq `
       endTime
     }
   },
-  "background": background.asset->url,
+  background,
   "speakers": speakers[]->{
     name,
     birthDate,
     title,
     titleAbbreviation,
     bio,
-    "image": photo.asset->url
+    image
   },
   teaser
 }

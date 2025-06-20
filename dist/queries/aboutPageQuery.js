@@ -3,7 +3,7 @@ export const aboutPageQuery = groq `
   *[_type == "aboutPage"][0] {
     _id,
     title,
-    "bannerImage": bannerImage.asset->url,
+    bannerImage,
     leadership[]->{
       _id,
       name,
@@ -11,7 +11,7 @@ export const aboutPageQuery = groq `
       title,
       titleAbbreviation,
       bio,
-      "photo": photo.asset->url
+      photo
     }
   }
 `;

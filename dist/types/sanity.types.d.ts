@@ -969,7 +969,18 @@ export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette
 export declare const internalGroqTypeReferenceTo: unique symbol;
 export type SmedsPageQueryResult = {
     title: string | null;
-    bannerImage: string | null;
+    bannerImage: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
     description: Array<{
         _key: string;
     } & Code | {
@@ -1040,7 +1051,18 @@ export type SmedsPageQueryResult = {
 export type AboutPageQueryResult = {
     _id: string;
     title: string | null;
-    bannerImage: string | null;
+    bannerImage: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
     leadership: Array<{
         _id: string;
         name: string | null;
@@ -1065,13 +1087,35 @@ export type AboutPageQueryResult = {
             _type: "block";
             _key: string;
         }> | null;
-        photo: string | null;
+        photo: {
+            asset?: {
+                _ref: string;
+                _type: "reference";
+                _weak?: boolean;
+                [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+            };
+            media?: unknown;
+            hotspot?: SanityImageHotspot;
+            crop?: SanityImageCrop;
+            _type: "image";
+        } | null;
     }> | null;
 } | null;
 export type ContactPageQueryResult = {
     _id: string;
     title: string | null;
-    bannerImage: string | null;
+    bannerImage: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
     description: Array<{
         _key: string;
     } & Code | {
@@ -1113,7 +1157,11 @@ export type ContactPageQueryResult = {
         state: string | null;
         zip: string | null;
     } | null;
-    phone: string | null;
+    phone: {
+        number: string | null;
+        isWhats: boolean | null;
+        name: string | null;
+    } | null;
     email: string | null;
     DefaultSocial: string | null;
     DefaultSocialLink: string | null;
@@ -1123,7 +1171,18 @@ export type ContactPageQueryResult = {
 export type EventPageQueryResult = {
     _id: string;
     title: string | null;
-    bannerImage: string | null;
+    bannerImage: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
 } | null;
 export type FindOneEventByIdQueryResult = {
     title: string | null;
@@ -1183,8 +1242,30 @@ export type FindOneEventByIdQueryResult = {
         state: string | null;
         zip: string | null;
     } | null;
-    banner: string | null;
-    bannerMobile: string | null;
+    banner: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
+    bannerMobile: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
     eventColor: string | null;
     organizer: {
         description: string | null;
@@ -1220,7 +1301,18 @@ export type FindOneEventByIdQueryResult = {
             endTime: string | null;
         }> | null;
     }> | null;
-    background: string | null;
+    background: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
     speakers: Array<{
         name: string | null;
         birthDate: string | null;
@@ -1244,7 +1336,7 @@ export type FindOneEventByIdQueryResult = {
             _type: "block";
             _key: string;
         }> | null;
-        image: string | null;
+        image: null;
     }> | null;
     teaser: string | null;
 } | null;
@@ -1253,14 +1345,25 @@ export type FindOneSermonByIdQueryResult = {
     title: string | null;
     date: string | null;
     slug: string | null;
-    background: string | null;
+    background: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
     speaker: {
         name: string | null;
         birthDate: string | null;
         title: string | null;
         titleAbbreviation: string | null;
         biography: null;
-        image: string | null;
+        image: null;
     } | null;
     tags: Array<{
         _id: string;
@@ -1377,7 +1480,18 @@ export type FindOneSermonBySlugQueryResult = {
     }> | null;
 } | null;
 export type FooterQueryResult = {
-    logo: string | null;
+    logo: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
     programmingTitle: string | null;
     programmingText: string | null;
     helpTitle: string | null;
@@ -1428,7 +1542,18 @@ export type GetPersonListQueryResult = Array<{
         _type: "block";
         _key: string;
     }> | null;
-    photo: string | null;
+    photo: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
 }>;
 export type GetPixelIdResult = {
     metaPixelId: string | null;
@@ -1458,8 +1583,30 @@ export type GetResumedEventListQueryResult = Array<{
             endTime: string | null;
         }> | null;
     }> | null;
-    background: string | null;
-    banner: string | null;
+    background: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
+    banner: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
 }>;
 export type GetResumedSermonSumaryListQueryResult = Array<{
     _id: string;
@@ -1576,7 +1723,18 @@ export type HomePageEventsQueryResult = Array<{
             endTime: string | null;
         }> | null;
     }> | null;
-    background: string | null;
+    background: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
 }> | null;
 export type HomePageQueryResult = {
     heroHeadline: Array<{
@@ -1614,7 +1772,18 @@ export type HomePageQueryResult = {
     }> | null;
     heroButtonTitle: string | null;
     heroButtonLink: string | null;
-    heroImage: string | null;
+    heroImage: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
     dividerText: Array<{
         children?: Array<{
             marks?: Array<string>;
@@ -1647,18 +1816,51 @@ export type HomePageQueryResult = {
     youtubeUrl: string | null;
     buttonLiveText: string | null;
     butonLiveLink: string | null;
-    liveBannerImage: string | null;
+    liveBannerImage: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
 } | null;
 export type HomePageSermonsQueryResult = Array<{
     _id: string;
     title: string | null;
     date: string | null;
     slug: string | null;
-    background: string | null;
+    background: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
     speaker: {
         name: string | null;
         titleAbbreviation: string | null;
-        photo: string | null;
+        photo: {
+            asset?: {
+                _ref: string;
+                _type: "reference";
+                _weak?: boolean;
+                [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+            };
+            media?: unknown;
+            hotspot?: SanityImageHotspot;
+            crop?: SanityImageCrop;
+            _type: "image";
+        } | null;
     } | null;
 }>;
 export type HomePageSmedsQueryResult = Array<{
@@ -1680,30 +1882,41 @@ export type HomePageSmedsQueryResult = Array<{
 export type SermonSummaryPageQueryResult = {
     _id: string;
     title: string | null;
-    bannerImage: string | null;
+    bannerImage: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    } | null;
 } | null;
 import "@sanity/client";
 declare module "@sanity/client" {
     interface SanityQueries {
-        "\n \n *[_type == \"ourSmedsPage\"][0]{  \n  title,\n  \"bannerImage\": bannerImage.asset->url,\n  description,\n  conclusion,\n}\n\n  ": SmedsPageQueryResult;
-        "\n  *[_type == \"aboutPage\"][0] {\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n    leadership[]->{\n      _id,\n      name,\n      birthDate,\n      title,\n      titleAbbreviation,\n      bio,\n      \"photo\": photo.asset->url\n    }\n  }\n": AboutPageQueryResult;
-        "\n  *[_type == \"contactPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n    description,\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    \"phone\": phone->number,\n    \"email\": email->address,\n    \"DefaultSocial\": DefaultSocial->socialUserName,\n    \"DefaultSocialLink\": DefaultSocial->url,\n    \"whatsApp\": WhatsPhone->number,\n\n    AvailableHours\n  }": ContactPageQueryResult;
-        "\n  *[_type == \"eventsPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n  }": EventPageQueryResult;
-        "\n *[_type == \"event\" && _id == $id && isActive == true][0] {\n  title,\n  subTitle,\n  about,\n  shortDescription,\n  registrtionLink,\n  \"address\": address->{\n    title,\n    street,\n    city,\n    state,\n    zip\n  },\n  \"banner\": banner.asset->url,\n  \"bannerMobile\": bannerMobile.asset->url,\n  \"eventColor\": eventColor.hex,\n  organizer {\n    description,\n    \"phone\": phone->{\n      number,\n      name\n    },\n    \"email\": email->{\n      address,\n      name\n    }\n  },\n  showDetailSchedule,\n  \"schedule\": schedule[]{\n    date,\n    sessions[]{\n      title,\n      description,\n      starTime,\n      endTime\n    }\n  },\n  \"background\": background.asset->url,\n  \"speakers\": speakers[]->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    bio,\n    \"image\": photo.asset->url\n  },\n  teaser\n}\n": FindOneEventByIdQueryResult;
-        "\n*[_type == \"sermonSummary\" && _id == $id && isActive == true][0] {\n _id,\n  title,\n  date,\n  \"slug\": slug.current,\n  \"background\": background.asset->url,\n  \"speaker\": speaker->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    biography,\n    \"image\": photo.asset->url\n  },\n  \"tags\": tags[]->{\n    _id,\n    title\n  },\n  \"videoLink\": videoUrl,\n  content\n}\n": FindOneSermonByIdQueryResult;
+        "\n \n *[_type == \"ourSmedsPage\"][0]{  \n  title,\n  bannerImage,\n  description,\n  conclusion,\n}\n\n  ": SmedsPageQueryResult;
+        "\n  *[_type == \"aboutPage\"][0] {\n    _id,\n    title,\n    bannerImage,\n    leadership[]->{\n      _id,\n      name,\n      birthDate,\n      title,\n      titleAbbreviation,\n      bio,\n      photo\n    }\n  }\n": AboutPageQueryResult;
+        "\n  *[_type == \"contactPage\"][0]{\n    _id,\n    title,\n    bannerImage,\n    description,\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    phone->{number,isWhats, name},\n    \"email\": email->address,\n    \"DefaultSocial\": DefaultSocial->socialUserName,\n    \"DefaultSocialLink\": DefaultSocial->url,\n    \"whatsApp\": WhatsPhone->number,\n\n    AvailableHours\n  }": ContactPageQueryResult;
+        "\n  *[_type == \"eventsPage\"][0]{\n    _id,\n    title,\n    bannerImage\n  }": EventPageQueryResult;
+        "\n *[_type == \"event\" && _id == $id && isActive == true][0] {\n  title,\n  subTitle,\n  about,\n  shortDescription,\n  registrtionLink,\n  \"address\": address->{\n    title,\n    street,\n    city,\n    state,\n    zip\n  },\n  banner,\n  bannerMobile,\n  \"eventColor\": eventColor.hex,\n  organizer {\n    description,\n    \"phone\": phone->{\n      number,\n      name\n    },\n    \"email\": email->{\n      address,\n      name\n    }\n  },\n  showDetailSchedule,\n  \"schedule\": schedule[]{\n    date,\n    sessions[]{\n      title,\n      description,\n      starTime,\n      endTime\n    }\n  },\n  background,\n  \"speakers\": speakers[]->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    bio,\n    image\n  },\n  teaser\n}\n": FindOneEventByIdQueryResult;
+        "\n*[_type == \"sermonSummary\" && _id == $id && isActive == true][0] {\n _id,\n  title,\n  date,\n  \"slug\": slug.current,\n  background,\n  \"speaker\": speaker->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    biography,\n    image,\n  },\n  \"tags\": tags[]->{\n    _id,\n    title\n  },\n  \"videoLink\": videoUrl,\n  content\n}\n": FindOneSermonByIdQueryResult;
         "\n*[_type == \"sermonSummary\" && slug.current == $slug && isActive == true][0] {\n _id,\n  title,\n  date,\n  \"slug\": slug.current,\n  background,\n  \"speaker\": speaker->{\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    biography,\n    photo\n  },\n  \"tags\": tags[]->{\n    _id,\n    title\n  },\n  \"videoLink\": videoUrl,\n  content\n}\n": FindOneSermonBySlugQueryResult;
-        "*[_type == \"footer\"][0]{\n    \"logo\":logo.asset->url,\n    programmingTitle,\n    programmingText,\n    helpTitle,\n    \"helpPhone\": helpPhone->number,\n    locationTitle,\n    socialLinks[]-> {\n      \"_key\":_id,\n      url,\n      \"plataform\":type->title,\n      \"icon\": type->icon.asset->url\n      },\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    mapEmbedUrl,\n  }": FooterQueryResult;
+        "*[_type == \"footer\"][0]{\n    logo,\n    programmingTitle,\n    programmingText,\n    helpTitle,\n    \"helpPhone\": helpPhone->number,\n    locationTitle,\n    socialLinks[]-> {\n      \"_key\":_id,\n      url,\n      \"plataform\":type->title,\n      \"icon\": type->icon.asset->url\n      },\n    address-> {\n      street,\n      number,\n      district,\n      city,\n      state,\n      zip\n    },\n    mapEmbedUrl,\n  }": FooterQueryResult;
         "\n  *[_type == \"sermonTag\"] {\n  _id,\n  title,\n  \"slug\": slug.current\n  }\n    \n": GetAllTagsQueryResult;
-        "\n  *[_type == \"person\"]{\n    _id,\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    bio,\n    \"photo\": photo.asset->url\n  }\n": GetPersonListQueryResult;
+        "\n  *[_type == \"person\"]{\n    _id,\n    name,\n    birthDate,\n    title,\n    titleAbbreviation,\n    bio,\n    photo\n  }\n": GetPersonListQueryResult;
         "*[_type == \"siteSettings\"][0]{ metaPixelId }": GetPixelIdResult;
-        "\n  *[_type == \"event\" && isActive == true]{\n    _id,  \n    title,\n    shortDescription,\n    \"address\": address->title,\n     schedule[] {\n        date,\n        sessions[]{\n          starTime,\n          endTime\n        }\n      },\n    \"background\": background.asset->url,\n    \"banner\": banner.asset->url,\n  }\n": GetResumedEventListQueryResult;
+        "\n  *[_type == \"event\" && isActive == true]{\n    _id,  \n    title,\n    shortDescription,\n    \"address\": address->title,\n     schedule[] {\n        date,\n        sessions[]{\n          starTime,\n          endTime\n        }\n      },\n    background,\n    banner,\n  }\n": GetResumedEventListQueryResult;
         "\n *[_type == \"sermonSummary\" && isActive == true] {\n   _id,   \n   title,\n   date,\n  tags[]->{_id,title},\n   \"slug\": slug.current,\n   background,\n   speaker->{ name, titleAbbreviation, photo},\n    }\n": GetResumedSermonSumaryListQueryResult;
         "\n \n*[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      banner,\n      bannerHorizontal,\n      smedDescription,\n      smedButton\n    }\n  ": GetSmedListQueryResult;
         "\n  *[_type == \"header\"][0]{\n    items[]{\n      label,\n      link\n    }\n  }\n": HeaderQueryResult;
-        "\n*[_type == \"homePage\"][0].eventList[]->{\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[] {\n        date,\n        sessions[]{\n          starTime,\n          endTime\n    }\n      },\n      \"background\": background.asset->url\n    }\n": HomePageEventsQueryResult;
-        "\n *[_type == \"homePage\"][0]{\n    heroHeadline,\n    heroDescription,\n    heroButtonTitle,\n    heroButtonLink,\n    \"heroImage\": heroImage.asset->url,\n    dividerText,\n    titleLive,\n    descriptionLive,\n    youtubeUrl,\n    buttonLiveText,\n    butonLiveLink,\n    \"liveBannerImage\": liveBannerImage.asset->url,\n  }\n": HomePageQueryResult;
-        "\n*[_type == \"sermonSummary\" && isActive == true ] | order(date desc)[0...5] {\n      _id,\n      title,\n      date,\n      \"slug\": slug.current,\n      \"background\": background.asset->url,\n      speaker->{ name, titleAbbreviation, \"photo\":photo.asset->url}\n      \n    }\n  ": HomePageSermonsQueryResult;
+        "\n*[_type == \"homePage\"][0].eventList[]->{\n    _id,  \n    title,\n      shortDescription,\n      \"address\":address->title,\n      schedule[] {\n        date,\n        sessions[]{\n          starTime,\n          endTime\n    }\n      },\n      background\n    }\n": HomePageEventsQueryResult;
+        "\n *[_type == \"homePage\"][0]{\n    heroHeadline,\n    heroDescription,\n    heroButtonTitle,\n    heroButtonLink,\n    heroImage,\n    dividerText,\n    titleLive,\n    descriptionLive,\n    youtubeUrl,\n    buttonLiveText,\n    butonLiveLink,\n    liveBannerImage,\n  }\n": HomePageQueryResult;
+        "\n*[_type == \"sermonSummary\" && isActive == true ] | order(date desc)[0...5] {\n      _id,\n      title,\n      date,\n      \"slug\": slug.current,\n      background,\n      speaker->{ name, titleAbbreviation, photo}\n      \n    }\n  ": HomePageSermonsQueryResult;
         "\n *[_type == \"smed\"] | order(_createdAt desc) {\n      _id,\n      title,\n      banner\n    }\n  ": HomePageSmedsQueryResult;
-        "\n  *[_type == \"sermonSummaryPage\"][0]{\n    _id,\n    title,\n    \"bannerImage\": bannerImage.asset->url,\n  }": SermonSummaryPageQueryResult;
+        "\n  *[_type == \"sermonSummaryPage\"][0]{\n    _id,\n    title,\n    bannerImage,\n  }": SermonSummaryPageQueryResult;
     }
 }

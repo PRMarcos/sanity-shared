@@ -12,7 +12,7 @@ export const getResumedEventListQuery = groq `
           endTime
         }
       },
-    "background": background.asset->url,
-    "banner": banner.asset->url,
+    background,
+    banner,
   }
 `;

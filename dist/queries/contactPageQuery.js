@@ -3,7 +3,7 @@ export const contactPageQuery = groq `
   *[_type == "contactPage"][0]{
     _id,
     title,
-    "bannerImage": bannerImage.asset->url,
+    bannerImage,
     description,
     address-> {
       street,
@@ -13,7 +13,7 @@ export const contactPageQuery = groq `
       state,
       zip
     },
-    "phone": phone->number,
+    phone->{number,isWhats, name},
     "email": email->address,
     "DefaultSocial": DefaultSocial->socialUserName,
     "DefaultSocialLink": DefaultSocial->url,

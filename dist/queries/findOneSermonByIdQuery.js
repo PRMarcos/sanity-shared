@@ -5,14 +5,14 @@ export const findOneSermonByIdQuery = groq `
   title,
   date,
   "slug": slug.current,
-  "background": background.asset->url,
+  background,
   "speaker": speaker->{
     name,
     birthDate,
     title,
     titleAbbreviation,
     biography,
-    "image": photo.asset->url
+    image,
   },
   "tags": tags[]->{
     _id,

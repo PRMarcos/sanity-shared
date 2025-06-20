@@ -1,6 +1,6 @@
 import groq from "groq";
 export const footerQuery = groq `*[_type == "footer"][0]{
-    "logo":logo.asset->url,
+    logo,
     programmingTitle,
     programmingText,
     helpTitle,
