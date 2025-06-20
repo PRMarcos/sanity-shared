@@ -14,7 +14,7 @@ export const contactPageQuery = groq`
       state,
       zip
     },
-    "phone": phone->number,
+    phone->{number,isWhats, name},
     "email": email->address,
     "DefaultSocial": DefaultSocial->socialUserName,
     "DefaultSocialLink": DefaultSocial->url,
