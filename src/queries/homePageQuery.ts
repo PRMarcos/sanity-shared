@@ -7,14 +7,14 @@ import groq from "groq"
     heroDescription,
     heroButtonTitle,
     heroButtonLink,
-    "heroImage": heroImage.asset->url,
+    heroImage,
     dividerText,
     titleLive,
     descriptionLive,
     youtubeUrl,
     buttonLiveText,
     butonLiveLink,
-    "liveBannerImage": liveBannerImage.asset->url,
+    liveBannerImage,
   }
 `;
 

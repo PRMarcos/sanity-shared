@@ -4,7 +4,7 @@ import groq from "groq";
  
  *[_type == "ourSmedsPage"][0]{  
   title,
-  "bannerImage": bannerImage.asset->url,
+  bannerImage,
   description,
   conclusion,
 }

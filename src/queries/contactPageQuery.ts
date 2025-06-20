@@ -4,7 +4,7 @@ export const contactPageQuery = groq`
   *[_type == "contactPage"][0]{
     _id,
     title,
-    "bannerImage": bannerImage.asset->url,
+    bannerImage,
     description,
     address-> {
       street,

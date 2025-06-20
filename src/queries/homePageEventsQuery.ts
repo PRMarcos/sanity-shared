@@ -13,6 +13,6 @@ export const homePageEventsQuery = groq`
           endTime
     }
       },
-      "background": background.asset->url
+      background
     }
 `

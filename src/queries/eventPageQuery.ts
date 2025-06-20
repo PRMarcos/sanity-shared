@@ -4,5 +4,5 @@ export const eventPageQuery = groq`
   *[_type == "eventsPage"][0]{
     _id,
     title,
-    "bannerImage": bannerImage.asset->url,
+    bannerImage
   }`;
